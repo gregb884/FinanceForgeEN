@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/logo-head.png" type="image/x-icon">
+
+
+    <style>
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mulish:ital,wght@1,300&display=swap');
+
+        .gradient-custom {
+            background: linear-gradient(to bottom, rgba(77, 77, 77, 1), rgba(20, 21, 30, 1));
+            width: 100%;
+            height: 80%;
+
+        }
+
+        body{
+
+            margin: 0;
+            box-sizing: border-box;
+            padding-top: 5%;
+            height: 150%;
+        }
+
+        .mainName {
+            position: relative;
+            margin-left: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        header {
+            position: fixed;
+            top: 0%;
+            background-color: whitesmoke;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .month span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .month span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .month:hover span {
+            padding-right: 25px;
+            background: transparent;
+        }
+
+        .month:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .textid {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+
+        .grid-container{
+
+            position: relative;
+            top: 5px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            @media (max-width: 800px) {
+
+                font-size: 10px;
+
+                background: linear-gradient(to bottom, rgba(77, 77, 77, 1), rgba(20, 21, 30, 1));
+            }
+        }
+
+        .groundText{
+
+            font-size: 30px;
+            color: whitesmoke;
+            margin-top: 40px;
+            text-align: center;
+            margin-left: 25px;
+            letter-spacing: 2px;
+
+
+        }
+
+
+        .groundbutton span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .groundbutton span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .groundbutton:hover span {
+            padding-right: 25px;
+        }
+
+        .groundbutton:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+
+
+        .item2{
+
+            width: 50%;
+            margin-top: 100px;
+        }
+
+        .item1{
+
+            width: 50%;
+            margin-top: 100px;
+
+            @media (max-width: 800px) {
+
+                width: 100%;
+
+            }
+        }
+
+        .item3{
+
+            width: 50%;
+
+            @media (max-width: 800px) {
+
+                width: 100%;
+
+            }
+
+        }
+
+        .paginationDiv .pagination .page-link {
+            background-color: #262424 !important;
+            color: whitesmoke !important;
+            border-color: #262424;
+        }
+
+        .paginationDiv .pagination .page-item.active .page-link {
+            background-color: #fff !important;
+            color: whitesmoke !important;
+        }
+
+        .table{
+
+            cursor: pointer;
+
+        }
+
+        .hidden-form {
+            display: none;
+        }
+
+        .visible-form {
+            display: block;
+        }
+
+        .hidden-form2 {
+            display: block;
+        }
+
+        .visible-form2{
+            display: none;
+        }
+
+        .visible-form {
+            display: block;
+        }
+
+        .switch{
+
+            color: whitesmoke;
+        }
+
+        button, input {
+            font: 1em Hind, sans-serif;
+            line-height: 1.5em;
+        }
+        input {
+            color: #171717;
+        }
+        .search-bar {
+            display: flex;
+        }
+
+        .search-bar input,
+        .search-btn,
+        .search-btn:before,
+        .search-btn:after {
+            transition: all 0.25s ease-out;
+        }
+        .search-bar input,
+        .search-btn {
+            width: 3em;
+            height: 3em;
+        }
+        .search-bar input:invalid:not(:focus),
+        .search-btn {
+            cursor: pointer;
+        }
+        .search-bar,
+        .search-bar input:focus,
+        .search-bar input:valid  {
+            width: 100%;
+        }
+        .search-bar input:focus,
+        .search-bar input:not(:focus) + .search-btn:focus {
+            outline: transparent;
+        }
+        .search-bar {
+            margin: auto;
+            padding: 1.5em;
+            justify-content: center;
+            max-width: 30em;
+        }
+        .search-bar input {
+            background: transparent;
+            border-radius: 1.5em;
+            box-shadow: 0 0 0 0.4em #171717 inset;
+            padding: 0.75em;
+            transform: translate(0.5em,0.5em) scale(0.5);
+            transform-origin: 100% 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .search-bar input::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+        .search-bar input:focus,
+        .search-bar input:valid {
+            background: #fff;
+            border-radius: 0.375em 0 0 0.375em;
+            box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+            transform: scale(1);
+        }
+        .search-btn {
+            background: #171717;
+            border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+            padding: 0.75em;
+            position: relative;
+            transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+            transform-origin: 0 50%;
+        }
+        .search-btn:before,
+        .search-btn:after {
+            content: "";
+            display: block;
+            opacity: 0;
+            position: absolute;
+        }
+        .search-btn:before {
+            border-radius: 50%;
+            box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+            top: 0.75em;
+            left: 0.75em;
+            width: 1.2em;
+            height: 1.2em;
+        }
+        .search-btn:after {
+            background: #f1f1f1;
+            border-radius: 0 0.25em 0.25em 0;
+            top: 51%;
+            left: 51%;
+            width: 0.75em;
+            height: 0.25em;
+            transform: translate(0.2em,0) rotate(45deg);
+            transform-origin: 0 50%;
+        }
+        .search-btn span {
+            display: inline-block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+        }
+
+        .search-bar input:focus + .search-btn,
+        .search-bar input:valid + .search-btn {
+            background: #2762f3;
+            border-radius: 0 0.375em 0.375em 0;
+            transform: scale(1);
+        }
+        .search-bar input:focus + .search-btn:before,
+        .search-bar input:focus + .search-btn:after,
+        .search-bar input:valid + .search-btn:before,
+        .search-bar input:valid + .search-btn:after {
+            opacity: 1;
+        }
+        .search-bar input:focus + .search-btn:hover,
+        .search-bar input:valid + .search-btn:hover,
+        .search-bar input:valid:not(:focus) + .search-btn:focus {
+            background: #0c48db;
+        }
+        .search-bar input:focus + .search-btn:active,
+        .search-bar input:valid + .search-btn:active {
+            transform: translateY(1px);
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+            input {
+                color: #f1f1f1;
+            }
+
+            .search-bar input {
+                box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+            }
+            .search-bar input:focus,
+            .search-bar input:valid {
+                background: #3d3d3d;
+                box-shadow: 0 0 0 0.1em #3d3d3d inset;
+            }
+            .search-btn {
+                background: #f1f1f1;
+            }
+        }
+
+        .returnSpan{
+
+            position: relative;
+            top: 5px;
+
+        }
+
+        .trans{
+
+
+            @media (max-width: 800px) {
+
+                width: 140%;
+                right: 20%;
+
+            }
+
+        }
+
+        .cate{
+            @media (max-width: 800px) {
+
+                width: 80%;
+                left: 12%;
+
+            }
+
+        }
+
+        .btn{
+
+            @media (max-width: 800px) {
+
+               font-size: 13px;
+                margin-bottom: 10px;
+
+            }
+        }
+
+        .end{
+
+            height: 500px;
+            display: flex;
+
+        }
+
+        #logoutButton{
+
+
+            position: relative;
+            right: 10px;
+            bottom: 4px;
+            cursor: pointer;
+            transition: all 0.5s;
+            border-radius: 5px;
+        }
+
+        #logoutButton span{
+
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        #logoutButton span:after{
+
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        #logoutButton:hover{
+
+            background : green;
+        }
+
+        #logoutButton:active:hover{
+
+            background: transparent;
+            border-color: darkgray;
+            transform: translateY(15px);
+
+        }
+
+        #logoutButton:hover span{
+
+            padding-right: 25px;
+            background : darkgray;
+        }
+
+        #logoutButton:hover span:after{
+            opacity: 1;
+            right: 0;
+        }
+
+
+    </style>
+</head>
+
+
+<header>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/panel}"><div class="mainName">
+                <h2>FinanceForge</h2>
+            </div></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <form method="get" th:action="@{/budget/{budgetId} (budgetId = ${budget.id})}" class="container-fluid justify-content-start">
+                        <button class="btn btn-outline-success me-2" type="submit"><span class="material-symbols-outlined returnSpan">assignment_return</span> widok budżetu </button>
+                    </form>
+
+                </ul>
+                <span class="material-symbols-outlined" onclick="logout()" id="logoutButton" >logout</span>
+                <span class="navbar-text">
+
+    <h3 class="textid">
+
+        <span class="material-symbols-outlined person">person</span>
+        <span th:text="${#strings.substringBefore(user.getUsername() ,'@')}">gregb884</span>
+
+    </h3>
+
+      </span>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+</header>
+
+<body class="vh-100 gradient-custom">
+
+<div class="grid-container" style="display: flex">
+
+    <div class="grid-item item1 hidden-form">
+
+
+        <div class="row d-flex justify-content-center align-items-center ">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white cate" style="border-radius: 1rem; ">
+                    <div class="card-body p-5 text-center">
+
+
+                        <form th:method="POST" th:object="${category}" >
+
+                            <p class="text-white-50 mb-5">Edytuj kategorie </p>
+
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" name="text" th:field="${category.name}" class="form-control form-control-lg" />
+                                <label class="form-label" >Nazwa</label>
+                            </div>
+
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="text"  name="password" th:field="${category.planned}" pattern="^\d+(\.\d{1,2})?$" class="form-control form-control-lg" />
+                                <label class="form-label" >Planowane</label>
+                            </div>
+
+
+                            <button class="btn btn-outline-light btn-lg px-10" type="submit">Dodaj</button>
+                        </form>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid-item item2 hidden-form2">
+
+
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white trans" style="border-radius: 1rem; ">
+                    <div class="card-body p-5 text-center">
+
+                        <form th:method="POST" id="form" onsubmit="return validateForm()"  th:object="${transaction}" th:action="@{/budget/{budgetId}/transaction/subcategory (budgetId = ${category.getGroup().getBudget().getId()})}">
+
+                            <p class="text-white-50 mb-5">Dodaj nową transakcje do tej kategori </p>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="date" id="username" name="username" th:field="${transaction.date}" class="form-control form-control-lg" />
+                                <label class="form-label" for="username">Data transakcji</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="total" name="password" pattern="^\d+(\.\d{1,2})?$" th:field="${transaction.total}" class="form-control form-control-lg" />
+                                <label class="form-label" for="total">Suma</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <select id="currency" th:field="${transaction.currency}" class="form-select form-select-sm" aria-label="Small select example">
+                                    <option th:each="currency : ${T(com.budget.financeforge.enumpaket.Currency).values()}" th:value="${currency}" th:text="${currency}"></option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" name="text" th:field="${transaction.note}" class="form-control form-control-lg" />
+                                <label class="form-label" >Notka</label>
+                            </div>
+
+                            <button class="submitButton btn btn-outline-light btn-lg px-10" type="submit">Zapisz</button>
+
+                            <div style="visibility: hidden" >
+                                <select th:field="${transaction.category}" class="form-select form-select-sm" aria-label="Small select example">
+                                    <option
+                                            th:value="${category.getId()}"
+                                            th:text="${category.getName()}"></option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <form method="GET"  th:action="@{/budget/{budgetId}(budgetId = ${category.getGroup().getBudget().getId()})}">
+                            <button class="btn btn-outline-light btn-lg px-10 finish" type="submit">Gotowe !</button>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="grid-item item3">
+
+        <div class="form-check form-switch hidden-form2">
+            <input class="form-check-input" type="checkbox" role="switch" onclick="toggleForm();toggleForm2()" id="flexSwitchCheckDefault">
+            <label class="form-check-label switch" for="flexSwitchCheckDefault">Edytuj kategorie</label>
+        </div>
+
+
+        <div class="groundText" >Ostatnie transakcje</div>
+
+
+        <table id="table" class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th onclick="toggleSortDirection('dateHeader','date','dateSortArrow')" scope="col" id="dateHeader" > Data
+                    <span id="dateSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+                <th onclick="toggleSortDirection('dateHeader','category','categorySortArrow')" scope="col" id="categoryHeader" > Kategoria
+                    <span id="categorySortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+                <th onclick="toggleSortDirection('dateHeader','total','totalSortArrow')" scope="col" id="totalHeader" > Suma
+                    <span id="totalSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+                <th onclick="toggleSortDirection('dateHeader','note','noteSortArrow')" scope="col" id="noteHeader" > Notka
+                    <span id="noteSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+
+                <th><span class="material-symbols-outlined">keyboard_double_arrow_down</span></th>
+
+            </tr>
+            </thead>
+            <tbody id="transactionTableBody">
+            </tbody>
+        </table>
+
+        <div class="paginationDiv" id="paginationDiv">
+
+        </div>
+
+        <form action="" onsubmit="searchTransactions(event)" class="search-bar">
+            <input placeholder="Szukaj po Notatce" type="search" id="searchInput" name="search" pattern=".*\S.*" required>
+            <button class="search-btn" onclick="searchTransactions()">
+                <span>Search</span>
+            </button>
+        </form>
+
+
+
+
+    </div>
+</div>
+
+<div id="end" class="end"></div>
+
+<script th:inline="javascript">
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        var searchInput = $('#searchInput');
+
+        searchInput.on('input', function() {
+            searchTransactions();
+        });
+
+        loadTransactionsData(0,'date,desc');
+
+    });
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var pageParam = urlParams.get('page');
+    var currentPage = pageParam ? parseInt(pageParam) : 0;
+
+    function toggleSortDirection(headerId,column, id) {
+        var arrowElement = document.getElementById(id);
+        var currentDirection = arrowElement.innerHTML;
+
+        if (currentDirection === '↑') {
+            arrowElement.innerHTML = '↓';
+            loadTransactionsData(0,column+',asc')
+        } else {
+            arrowElement.innerHTML = '↑';
+            loadTransactionsData(0,column+',desc')
+        }
+    }
+
+    function toggleForm() {
+        var form = document.querySelector('.hidden-form');
+        form.classList.toggle('visible-form');
+    }
+
+    function toggleForm2() {
+        var form = document.querySelector('.hidden-form2');
+        form.classList.toggle('visible-form2');
+    }
+
+    function loadTransactionsData(page,sort) {
+
+        var url = '/api/transaction/dataCategory';
+        var categoryId = /*[[${category.id}]]*/ 0;
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                categoryId: categoryId,
+                search: getSearchText(),
+                page: page,
+                size: 10,
+                sort: sort,
+            },
+            dataType: 'json',
+            success: function(data) {
+
+
+                if(Array.isArray(data.content)){
+                    renderTable(data.content);
+                    generatePagination(data.number, data.totalPages,sort);
+
+                } else {
+
+                    console.error("Error from response server")
+                }
+
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+    function getSearchText() {
+        return document.getElementById("searchInput").value;
+    }
+
+    function renderTable(data) {
+        var transactionTableBody = $('#transactionTableBody');
+        transactionTableBody.empty();
+
+        data.forEach(function(transaction) {
+            var row = '<tr data-transaction-id="' + transaction.id + '">';
+            row += '<td>' + formatDate(transaction.date) + '</td>';
+            row += '<td>' + transaction.category.name + '</td>';
+            row += '<td>' + transaction.total + ' ' + transaction.currency + '</td>';
+            row += '<td>' + transaction.note + '</td>';
+            row += '<td>' + ' <div class="btn-group dropend">\n' +
+                '            <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">\n' +
+                '              <span class="material-symbols-outlined">add</span>\n' +
+                '            </button>\n' +
+                '\n' +
+                '            <ul class="dropdown-menu dropdown-menu-dark" >\n' +
+                '              <li>\n' +
+                '                <a class="dropdown-item " onclick="deleteTransaction(' + transaction.id + ')" >Usuń transakcje</a>\n' +
+                '              </li>\n' +
+                '              <li><a class="dropdown-item " onclick="redirectToEditPage(' + transaction.id + ')" >Edytuj transakcje</a></li>\n' +
+                '            </ul>\n' +
+                '\n' +
+                '          </div>' + '</td>';
+            row += '</tr>';
+            transactionTableBody.append(row);
+        });
+
+
+    }
+
+    function redirectToEditPage(transactionId) {
+
+        var budgetId = /*[[${category.getGroup().getBudget().getId()}]]*/ 0;
+
+        window.location.href = '/budget/' + budgetId + '/transaction/' + transactionId;
+
+    }
+
+    function deleteTransaction(transactionId) {
+
+        var budgetId = /*[[${category.getGroup().getBudget().getId()}]]*/ 0;
+
+        var url = '/budget/' + budgetId + '/transaction/' + transactionId + '/delete';
+
+        $.ajax({
+            type: 'DELETE',
+            url: url,
+            success: function() {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Transakcja została usunięta",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                setTimeout(function (){
+
+                    location.reload();
+
+                }, 1550);
+            },
+            error: function() {
+
+                Swal.fire({
+                    title: 'Nie możesz usunąc tej transakcji',
+                })
+
+            }
+        });
+
+    }
+
+
+
+    function generatePagination(currentPage, totalPages, sort) {
+        var paginationDiv = $('#paginationDiv');
+        paginationDiv.empty();
+        var paginationList = $('<ul class="pagination justify-content-start"></ul>');
+
+        for (var i = 0; i < totalPages; i++) {
+            var pageLink = $('<a class="page-link" href="#"></a>').text(i + 1);
+            if (i === currentPage) {
+                pageLink.addClass('active');
+            }
+
+            (function (pageNumber) {
+                pageLink.click(function (event) {
+                    event.preventDefault();
+                    loadTransactionsData(pageNumber,sort);
+                });
+            })(i);
+
+            paginationList.append($('<li class="page-item"></li>').append(pageLink.attr('href', '/api/transaction/data?page=' + i)));
+        }
+
+
+        paginationDiv.show().append($('<nav aria-label="Page navigation"></nav>').append(paginationList));
+
+
+        window.onpopstate = function(event) {
+            var pageNumber = event.state.pageNumber || 0;
+            loadTransactionsData(pageNumber);
+        };
+    }
+    function searchTransactions() {
+        event.preventDefault();
+        loadTransactionsData(0);
+    }
+
+    function formatDate(dateString) {
+        var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        var formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+        return formattedDate;
+    }
+
+
+    var eurToPln = /*[[${eurToPln}]]*/ 0;
+
+    function validateForm() {
+        var total = document.getElementById("total").value;
+        var currency = document.getElementById("currency").value;
+
+        if (!total || !currency) {
+            alert("Wypełnij wszystkie wymagane pola");
+            return false;
+        }
+
+        var budgetCurrency = /*[[${budget.getCurrency()}]]*/ '';
+
+
+        if(budgetCurrency !== currency) {
+
+            var rate = 0;
+
+            if (budgetCurrency === "PLN" && currency === "EUR")
+            {
+                rate = eurToPln;
+            }
+
+            if (budgetCurrency === "EUR" && currency === "PLN")
+            {
+                rate = eurToPln;
+            }
+
+
+            Swal.fire({
+                title: "Wymienić walute ? Aktualny kurs EUR/PLN  : " + rate,
+                showDenyButton: true,
+                confirmButtonText: "Zapisz",
+                denyButtonText: `Wróć`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Zapisano!", "", "success").then(() => {
+                        document.getElementById('form').submit();
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire("Zmiany nie zapisane", "", "info");
+                }
+            });
+
+            return false;
+
+        }
+
+        return true;
+    }
+
+
+</script>
+</body>
+
+</html>

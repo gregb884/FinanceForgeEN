@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/logo-head.png" type="image/x-icon">
+
+</head>
+
+    <style>
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mulish:ital,wght@1,300&display=swap');
+
+
+
+        body{
+
+            margin: 0;
+            box-sizing: border-box;
+            padding-top: 5%;
+            background: linear-gradient(to bottom, rgba(77, 77, 77, 1), rgba(20, 21, 30, 1)) fixed;
+            background-size: cover;
+        }
+
+        .mainName {
+            position: relative;
+           margin: 10px;
+            height: 36px;
+            width: 150px;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        header {
+            position: fixed;
+            top:0;
+            background-color: whitesmoke;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .month span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .month span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .month:hover span {
+            padding-right: 25px;
+            background: transparent;
+        }
+
+        .month:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+
+        .textid {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+
+        .groundText{
+
+            font-size: 30px;
+            color: whitesmoke;
+            text-align: center;
+            position: relative;
+            margin-bottom: 1px;
+
+        }
+        .table{
+
+            text-align: center;
+        }
+
+
+
+        .groundbutton {
+            border-radius: 4px;
+            background-color: transparent;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+
+        }
+
+        .groundbutton span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            margin-left: 5px;
+            transition: 0.5s;
+
+        }
+
+        .groundbutton span:after {
+            content: '\00bb';
+            position: relative;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+
+        }
+
+        .groundbutton:hover span {
+            padding-right: 25px;
+        }
+
+        .groundbutton:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+
+        .headergroundbutton:hover span {
+            padding-right: 25px;
+        }
+
+        .headergroundbutton:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .btn-group{
+
+            left: 77%;
+        }
+
+
+        .material-symbols-outlined {
+             font-variation-settings:
+                     'FILL' 0,
+                     'wght' 300,
+                     'GRAD' 400,
+                     'opsz' 24
+         }
+
+       .dropdown-item:active{
+
+           background-color: transparent;
+       }
+
+      .categoryTable{
+
+          cursor: pointer;
+      }
+
+
+      .salaryText{
+
+          position: relative;
+          font-size: 30px;
+          color: whitesmoke;
+          opacity: 80%;
+          background-color: transparent;
+          display: inline;
+
+          @media (max-width: 880px) {
+
+              font-size: 12px;
+          }
+
+
+      }
+
+      .mainChart{
+
+          background-color: transparent;
+          position: relative;
+          width: 100%;
+          height: 100%;
+      }
+
+      .transactionButton{
+
+
+      }
+
+        .grid-container{
+
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            position: relative;
+            top: 5px;
+
+        }
+
+        .grid-item{
+
+            margin: 10px;
+            flex: 1 1 30%;
+
+        }
+
+
+        @media (max-width: 1650px) {
+
+            .grid-item{
+                flex: 1 1 45%
+            }
+
+        }
+
+        @media (max-width: 1200px) {
+
+            .grid-item{
+
+                flex: 1 1 50%;
+            }
+
+
+            .mainChart{
+
+                max-width: 80%;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .grid-container{
+                justify-content: center;
+            }
+
+            .grid-item{
+
+                flex: 1 1 100%;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+            .grid-item {
+                flex: 1 1 100%;
+            }
+
+            .mainChart{
+
+                max-width: 80%;
+            }
+
+        }
+
+
+      .item0{
+          border-radius: 10px;
+          order: 0;
+          justify-content: center;
+          flex: 1 1 100%;
+          margin-top: 10px;
+          @media (max-width: 1200px) {
+
+              margin-top: 60px;
+          }
+
+          @media (max-width: 1600px) {
+
+              margin-top: 20px;
+          }
+
+          @media (max-width: 700px) {
+
+              margin-top: 10px;
+          }
+      }
+
+      .item1{
+
+
+          position: relative;
+          width: 25%;
+          order: 1;
+          margin-bottom: 30px;
+
+      }
+
+      .item2{
+
+          position: relative;
+          width: 25%;
+          height: 400px;
+          order: 4;
+
+      }
+
+      .item3{
+          position: relative;
+          width: 25%;
+          order: 5;
+          height: 400px;
+      }
+
+      .item4{
+
+          position: relative;
+          width: 25%;
+          order: 2;
+          margin-bottom: 30px;
+
+      }
+
+      .additionalTable.table{
+
+          width: 99%;
+      }
+
+      .item5{
+
+          position: relative;
+          width: 25%;
+          order: 3;
+          margin-bottom: 30px;
+
+      }
+
+
+        .item6 {
+            position: relative;
+            width: 25%;
+            height: 400px;
+            order: 6;
+            margin-bottom: 30px;
+
+        }
+
+        .item7 {
+            position: relative;
+            width: 90%;
+            order: 7;
+        }
+
+
+      .table{
+
+          cursor: pointer;
+
+
+          @media (max-width: 800px) {
+
+              font-size: 10px;
+          }
+      }
+
+        #newGroupForm2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        #newGroupForm2 .tooltip {
+            visibility: hidden;
+            width: 150px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 50%;
+            left: 125%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #newGroupForm2:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .newCreditForm{
+
+           width: 30%;
+            display: inline;
+            position: relative;
+            top: 80%;
+            left: 30%;
+        }
+
+        .additionalTable{
+
+            cursor: pointer;
+            width: 32%;
+
+        }
+
+        .categoryTable{
+
+
+            width: 99%;
+        }
+
+
+        .editGroundCostButton{
+
+            position: relative;
+            left: 15%;
+            margin-bottom: 2px;
+            color: #bd6dd2;
+        }
+
+        .editGroundCostButton:hover{
+
+            animation-name: rotate;
+            animation-duration: 10s;
+        }
+
+        @keyframes rotate{
+            from{ transform: rotate(-360deg); }
+            to{ transform: rotate(360deg); }
+        }
+
+        .topStats{
+
+            background:  #5D47DF;
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 50px;
+            margin-left: 10px;
+            cursor: pointer;
+            width: 30%;
+            float: left;
+            text-align: center;
+
+            @media (min-width: 1650px ) {
+
+                margin-left: 32px;
+                width: 30%;
+
+            }
+
+            @media (max-width: 800px ) {
+
+                border-radius: 10px;
+                width: 30%;
+
+            }
+
+        }
+
+        .dollarSpan{
+
+            @media (max-width: 800px ) {
+                display: none;
+            }
+        }
+
+        .top2{
+
+            position: relative;
+            left: 2%;
+
+        }
+
+
+        .top1{
+
+            position: relative;
+            left: 4%;
+            margin-right: 1%;
+
+            @media min-width: 1900px {
+
+            left: 4%;
+
+        }
+
+        }
+
+
+
+        .balanceText{
+
+            @media (max-width: 880px) {
+
+                font-size: 12px;
+            }
+        }
+
+        .dollarSpan{
+
+            position: relative;
+
+            top: 6px;
+        }
+
+        #popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        #popup-form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        #close-btn {
+            background-color: red;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style the form fields */
+        #savings, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        #submitButton{
+
+                background-color: green;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-bottom: 10px;
+        }
+
+        #transferButton{
+            background-color: #004680;
+            color: #fff;
+            border: none;
+            width: 50%;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+
+        }
+
+        #logoutButton{
+
+
+            position: relative;
+            right: 10px;
+            bottom: 4px;
+            cursor: pointer;
+            transition: all 0.5s;
+            border-radius: 5px;
+        }
+
+        #logoutButton span{
+
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        #logoutButton span:after{
+
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        #logoutButton:hover{
+
+            background : green;
+        }
+
+        #logoutButton:active:hover{
+
+            background: transparent;
+            border-color: darkgray;
+            transform: translateY(15px);
+
+        }
+
+        #logoutButton:hover span{
+
+            padding-right: 25px;
+            background : darkgray;
+        }
+
+        #logoutButton:hover span:after{
+            opacity: 1;
+            right: 0;
+        }
+
+        .welcomeText{
+
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        #closeSubscription{
+
+            position: relative;
+            left: 45%;
+            top: 6%;
+            cursor: pointer;
+        }
+
+        .closeButton{
+
+            background-color: transparent;
+            border-color: transparent;
+            position: relative;
+            cursor: pointer;
+            color: whitesmoke;
+
+        }
+
+        #closeCredit{
+
+            position: relative;
+            left: 93%;
+            top: 6%;
+            cursor: pointer;
+        }
+
+        .additionalClose{
+
+            position: relative;
+            left: 93%;
+        }
+
+        #closeSubscription{
+
+
+            position: relative;
+            left: 10%;
+            top: 6%;
+            cursor: pointer;
+
+        }
+
+        .SubscriptionClose{
+
+
+            position: relative;
+            left: 83%;
+
+
+        }
+
+        .additionalButton{
+
+            position: relative;
+            left: 32%;
+
+
+        }
+
+        .subButton{
+
+            position: relative;
+            left: 32%;
+            top: 32%;
+
+        }
+
+        .budgetName{
+
+            position: relative;
+            width: 100%;
+            left: 45%;
+            color: whitesmoke;
+            opacity: 90%;
+
+            @media (max-width: 1601px ) {
+
+                left: 40%;
+
+            }
+
+            @media (max-width: 1491px ) {
+
+                margin-top: 54px;
+
+            }
+
+            @media (max-width: 746px ) {
+
+                left: 35%;
+
+            }
+
+        }
+
+        .hiddenOnSmallScreen{
+
+
+
+            @media (max-width: 991px ) {
+
+                display: none;
+
+            }
+
+
+        }
+
+        .logoutHeader{
+
+            @media (min-width: 991px ) {
+
+                display: none;
+
+            }
+
+        }
+
+        .page-item{
+
+            z-index: 0;
+        }
+
+
+    </style>
+
+
+</head>
+
+
+<header>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/panel}"><div class="mainName">
+                <h2>FinanceForge</h2>
+            </div></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                    <button id="addNewTransactionButton" class="btn btn-outline-success me-2 nav-link transactionButton" type="submit">Dodaj nową transakcje</button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button id="addNewCreditButton"  class="btn btn-outline-success me-2 nav-link " type="submit">Kredyt</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="addNewSubButton"  onclick="addNewSubButton()" class="btn btn-outline-success me-2 nav-link " type="submit">Subskrypcje</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="budgetList"  onclick="budgetList()" class="btn btn-outline-success me-2 nav-link " type="submit">Lista budżetów</button>
+                    </li>
+                    <li  th:if="${settings.getIsAdditionalViewHidden()}" class="nav-item">
+                        <form  method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+                            <input type="hidden" name="isAdditionalViewHidden" value="false">
+                        <button id="addNewTable"  class="btn btn-outline-success me-2 nav-link " type="submit">Widok drugiej tabeli </button>
+                        </form>
+                    </li>
+                    <li  th:if="${settings.getIsCreditViewHidden()}" class="nav-item">
+                        <form th:if="${settings.getIsCreditViewHidden()}" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+                            <input type="hidden" name="isCreditViewHidden" value="false">
+                            <button   class="btn btn-outline-success me-2 nav-link " type="submit">Dodaj widok wykresu kredytów </button>
+                        </form>
+                    </li>
+                    <li  th:if="${settings.getIsSubscriptionViewHidden()}" class="nav-item">
+                        <form th:if="${settings.getIsSubscriptionViewHidden()}" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+                            <input type="hidden" name="isSubscriptionViewHidden" value="false">
+                            <button   class="btn btn-outline-success me-2 nav-link " type="submit">Dodaj widok subskrypcji </button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-success me-2 nav-link logoutHeader" onclick="logout()" type="submit">Wyloguj</button>
+                    </li>
+
+
+
+
+                </ul>
+
+
+                <span class="material-symbols-outlined hiddenOnSmallScreen" onclick="logout()" id="logoutButton" >logout</span>
+                <span class="navbar-text hiddenOnSmallScreen">
+
+    <h3 class="textid hiddenOnSmallScreen">
+
+        <span class="material-symbols-outlined person hiddenOnSmallScreen">person</span>
+        <span class="hiddenOnSmallScreen" th:text="${#strings.substringBefore(user.getUsername() ,'@')}">gregb884</span>
+
+    </h3>
+
+      </span>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+</header>
+
+<body class="vh-100 gradient-custom">
+
+
+<div id="popup-container">
+    <div id="popup-form">
+        <h2>Wprowadź oszczędności </h2>
+        <form th:method="POST" th:action="@{/budget/{budgetId}/savings (budgetId = ${budget.id})}" th:object="${budgetSavingsDto}" id="updateSavingsForm">
+            <label for="savings">Suma:</label>
+
+            <input th:field="${budgetSavingsDto.savings}" type="text" id="savings" name="name" required>
+
+            <br>
+            <button id="submitButton" type="submit">Zapisz</button>
+        </form>
+
+        <h2>lub </h2>
+
+        <h2>Transferuj pozostałe pieniądze do oszczędności </h2>
+
+        <button id="transferButton" >Prześlij</button>
+
+        <h2></h2>
+
+        <button id="close-btn" onclick="closePopup()">Zamknij</button>
+    </div>
+</div>
+
+
+<div class="container py-5 h-100 animate__animated animate__backInDown" th:if="${budget.groups[0].getCategories().isEmpty()}">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center" >
+
+                    <h1 class="welcomeText">Teraz możesz utworzyć table z podstawowymi wydatkami</h1>
+
+                    <form method="get" th:action="@{/budget/{budgetId}/group/{groupId}(budgetId=${budget.getId()},groupId=${budget.groups[0].getId()})}">
+                        <button type="submit" class="btn btn-outline-primary month"><span>Dodaj podstawowe wydatki </span>  </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:if="${!budget.groups[0].getCategories().isEmpty()}" class="grid-container" style="display: flex">
+
+    <div class="budgetName">
+        <h1 th:text="${budget.getName()}"> January 2024 </h1>
+    </div>
+
+
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <p th:text="${errorMessage}">Error Message</p>
+    </div>
+
+    <div th:if="${!budget.groups[0].getCategories().isEmpty()}" class="grid-item item0 ">
+
+
+
+
+        <div class="topStats">
+
+            <li class="balanceText">Saldo <span class="dollarSpan material-symbols-outlined">
+attach_money
+</span>
+            </li>
+
+
+            <div class="salaryText" th:if="${!budget.getSalaries().isEmpty()}" >
+
+                <div class="balanceNumber" th:text="${balance}" style="display: inline; margin-left: 10px" >2000.00</div>
+                <div class="balanceNumber" th:text="${budget.getCurrency()}" style="display: inline; margin-left: 10px" >EUR</div>
+
+            </div>
+
+            <div class="salaryText" th:if="${budget.getSalaries().isEmpty()}" >
+
+                <div onclick="addSalary()" class="balanceNumber" style="display: inline; margin-left: 10px" >Dodaj swoje wpływy aby zobaczyc saldo</div>
+
+            </div>
+
+        </div>
+
+        <div id="salaryButton" class="topStats top2">
+
+            <li class="balanceText">Wpływy <span class="dollarSpan material-symbols-outlined">attach_money</span>
+            </li>
+
+
+
+            <div class="salaryText" th:if="${!budget.getSalaries().isEmpty()}" >
+
+                <div class="balanceNumber" th:text="${totalSalary}" style="display: inline; margin-left: 10px" >2000.00</div>
+                <div class="balanceNumber" th:text="${budget.getCurrency()}" style="display: inline; margin-left: 10px" >EUR</div>
+
+            </div>
+
+            <div class="salaryText" th:if="${budget.getSalaries().isEmpty()}" >
+
+                <div class="balanceNumber" style="display: inline; margin-left: 10px" >Dodaj wpływy</div>
+
+            </div>
+
+        </div>
+
+
+        <div onclick="openPopup()" class="topStats top1">
+
+            <li class="balanceText">
+                Oszczędności <span class="dollarSpan material-symbols-outlined">
+attach_money
+</span>
+            </li>
+
+
+
+            <div class="salaryText"  >
+
+                <div class="balanceNumber" th:text="${budget.getSavings()}" style="display: inline; margin-left: 10px" >2000.00</div>
+                <div class="balanceNumber" th:text="${budget.getCurrency()}" style="display: inline; margin-left: 10px" >EUR</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="grid-item item1 card bg-dark text-white">
+
+        <form style="visibility: hidden"  class="CreditClose" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+            <input type="hidden" name="isCreditViewHidden" value="true">
+            <button class="closeButton" id="closeBasic" type="submit"> <span class="material-symbols-outlined hideButton" >close</span></button>
+        </form>
+
+        <div class="groundText" >Podstawowe wydatki</div>
+
+
+        <table th:if="${!budget.groups[0].getCategories().isEmpty()}" id="tableCategory"  class="categoryTable table table-dark table-hover">
+            <thead>
+            <tr>
+                <th scope="col" >Nazwa</th>
+                <th scope="col" >Planowo</th>
+                <th scope="col" >Wydano</th>
+                <th scope="col" >Pozostało <span id="editGroundCostButton" class="material-symbols-outlined editGroundCostButton" title="Edit Ground Category" style="display: inline-block; vertical-align: middle;">settings</span></th>
+            </tr>
+            </thead>
+            <tbody id="categoryTableBody">
+            </tbody>
+        </table>
+
+        <div class="paginationDiv" id="paginationDiv1">
+
+        </div>
+
+        <button id="tipButton" style="display: block;background-color: transparent;border-color: transparent;color: #0c48db;width: 30px" onclick="openTips()">
+            <span class="material-symbols-outlined">
+            privacy_tip
+            </span>
+        </button>
+
+        <div style="display: none" class="tips" id="tips">
+
+            <h3 style="font-size: 15px;display: inline-block">W tym miesiącu musisz wydać jeszcze minimum : </h3>
+            <h3 style="font-size: 15px;display: inline" th:text="${restToSpend}"> 2000 </h3>
+            <h3 style="font-size: 15px;display: inline" th:text="${budget.getCurrency()}"> EUR </h3>
+
+            <h3 style="font-size: 15px;display: inline-block">Rzeczywiste saldo po planowanych płatnościach : </h3>
+            <h3 style="font-size: 15px;display: inline" th:text="${balanceAfterSpend}"> 2000 </h3>
+            <h3 style="font-size: 15px;display: inline" th:text="${budget.getCurrency()}"> EUR </h3>
+
+            <button class="closeButton" onclick="closeTips()" id="closeTipButton"><span style="position: relative;top: 6px;" class="material-symbols-outlined hideButton" >close</span></button>
+
+        </div>
+
+    </div>
+
+    <div th:if="${chartSpend}" class="grid-item item2 card bg-dark text-white">
+
+
+        <div class="chartsampel" id="chartSpent" ></div>
+
+
+    </div>
+
+    <div th:if="${!settings.getIsCreditViewHidden()}" class="grid-item item3 card bg-dark text-white">
+
+
+
+            <form  class="CreditClose" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+            <input type="hidden" name="isCreditViewHidden" value="true">
+            <button class="closeButton" id="closeCredit" type="submit"> <span class="material-symbols-outlined hideButton" >close</span></button>
+            </form>
+
+
+        <div th:if="${!budget.getCredits().isEmpty()}" class="chartsampel" id="chartCredit" ></div>
+
+
+        <form th:if="${budget.getCredits().isEmpty()&&!budget.groups[0].getCategories().isEmpty()}" id="newCreditForm" method="get" th:action="@{/budget/{budgetId}/credit (budgetId = ${budget.id})}">
+            <button class="groundbutton newCreditForm" > Dodaj kredyt <span class="material-symbols-outlined">add_task</span></button>
+
+        </form>
+    </div>
+
+
+
+    <div class="grid-item item4 card bg-dark text-white" id="additionalView" th:if="${!settings.getIsAdditionalViewHidden()}" >
+
+
+
+        <form class="additionalClose" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+            <input type="hidden" name="isAdditionalViewHidden" value="true">
+            <button class="closeButton" type="submit" > <span class="material-symbols-outlined hideButton" >close</span></button>
+        </form>
+
+
+        <form th:if="${!budget.groups[0].getCategories().isEmpty()&& budget.getGroups().size()<2}" id="newGroupForm2" method="get" th:action="@{/budget/{budgetId}/group/addNewGroup(budgetId=${budget.getId()})}">
+            <button class="groundbutton additionalButton" >Dodaj nową grupe <span class="material-symbols-outlined">add_task</span></button>
+            <div class="tooltip">Możesz utworzyć nową grupe wydatkow np . nieplanowane </div>
+        </form>
+
+
+        <div class="groundText additionalTextTable" th:if="${budget.groups.size() > 1}" >Dodatkowe koszta</div>
+
+        <table th:if="${budget.getGroups().size()>1}" id="additionalTable"  class="additionalTable table table-dark table-hover">
+            <thead>
+            <tr>
+                <th scope="col" >Nazwa</th>
+                <th scope="col" >Planowo</th>
+                <th scope="col" >Wydano</th>
+                <th scope="col" >Pozostało <span id="editAdditionalCostButton" class="material-symbols-outlined editGroundCostButton" title="Edit Additional Category" style="display: inline-block; vertical-align: middle;">settings</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody id="additionalTableBody">
+        <tr>
+            <td colspan="4" class="text-center">Brak kategori</td>
+        </tr>
+            </tbody>
+
+
+        </table>
+
+        <div class="paginationDiv" id="paginationDiv2">
+
+        </div>
+
+    </div>
+
+    <div th:if="${!budget.groups[0].getCategories().isEmpty()&&!settings.getIsSubscriptionViewHidden()}" class="grid-item item5 card bg-dark text-white">
+
+
+        <form  class="SubscriptionClose" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
+            <input type="hidden" name="isSubscriptionViewHidden" value="true">
+            <button class="closeButton" id="closeSubscription" type="submit"> <span class="material-symbols-outlined hideButton" >close</span></button>
+        </form>
+
+
+        <form th:if="${budget.getSubscriptions().isEmpty() && !budget.groups[0].getCategories().isEmpty()}" id="newSubscriptionForm" method="get" th:action="@{/budget/{budgetId}/subscription (budgetId=${budget.getId()})}">
+            <button class="groundbutton subButton" >Dodaj subskrypcje <span class="material-symbols-outlined">add_task</span></button>
+            <div class="tooltip">Możesz dodac tabele do subskrypcji</div>
+        </form>
+
+        <div class="groundText additionalTextTable" th:if="${!budget.getSubscriptions().isEmpty()}" >Subskrypcje</div>
+
+
+        <table th:if="${!budget.getSubscriptions().isEmpty()}" id="subscriptionTable"  class="subscriptionTable table table-dark table-hover">
+            <thead>
+            <tr>
+                <th scope="col" >Nazwa</th>
+                <th scope="col" >Suma</th>
+                <th scope="col" >Opłacone <span id="editSubscriptionButton" class="material-symbols-outlined editGroundCostButton" title="Edit Additional Category" style="display: inline-block; vertical-align: middle;">settings</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody id="subscriptionTableBody">
+            <tr>
+                <td colspan="4" class="text-center">Brak aktywnych subskrypcji</td>
+            </tr>
+            </tbody>
+
+        </table>
+
+        <div class="paginationDiv" id="paginationDiv3">
+
+        </div>
+
+    </div>
+
+    <div th:if="${!budget.groups[0].getCategories().isEmpty()}" class="grid-item item6 card bg-dark text-white">
+
+            <div class="chartsampel" id="chartjs" ></div>
+
+    </div>
+
+    <div th:if="${!budget.getTransactions().isEmpty()}" class="grid-item item7 card bg-dark text-white">
+
+        <div class="groundText additionalTextTable" >Ostatnie transakcje</div>
+
+        <table  id="table" class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th scope="col" >Data</th>
+                <th scope="col" >Kategoria</th>
+                <th scope="col" >Suma</th>
+                <th scope="col" >Notka</th>
+            </tr>
+            </thead>
+            <tbody id="transactionTableBody">
+            <tr th:if="${budget.getTransactions().isEmpty()}">
+                <td colspan="4" class="text-center">Brak dostępnych transakcji</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+</body>
+
+
+
+<script th:inline="javascript" >
+
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+
+        console.log(window.innerWidth);
+
+        loadTransactionsData();
+        loadCategoriesData(groupIdGround,groundTableBody,0 , '#paginationDiv1');
+
+        if (subActiv > 0) {
+            loadSubscriptionData(0);
+        }
+
+        if (groupIdAdditional > 0) {
+            loadCategoriesData(groupIdAdditional, additionalTableBody,0, '#paginationDiv2');
+        }
+
+
+    });
+
+    var budgetId = /*[[${budget.id}]]*/ 0;
+
+    var groupIdGround = /*[[${budget.groups[0].id}]]*/ 0;
+
+    var groupIdAdditional = /*[(${budget.groups.size() > 1 ? budget.groups[1].id : 0})]*/ 0;
+
+    var categoryData = /*[[${categories}]]*/ '';
+
+    var creditData = /*[[${creditData}]]*/ '';
+
+    var rest = /*[[${rest}]]*/ '';
+
+    var subActiv = /*[[${budget.getSubscriptions().size()}]]*/ 0;
+
+    var groundTableBody = '#categoryTableBody';
+
+    var additionalTableBody = '#additionalTableBody';
+
+    var eurToPln = /*[[${eurToPln}]]*/ 0;
+
+
+
+
+    function openTips(){
+
+        var div = document.getElementById("tips");
+        var div2 = document.getElementById("tipButton")
+        div.style.display = "block";
+        div2.style.display = "none";
+
+    }
+
+    function closeTips(){
+
+        var div = document.getElementById("tips");
+        var div2 = document.getElementById("tipButton")
+        div.style.display = "none";
+        div2.style.display = "block";
+
+    }
+
+    function openPopup() {
+        document.getElementById('popup-container').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popup-container').style.display = 'none';
+    }
+
+    function logout(){
+
+
+        Swal.fire({
+            title: "Napewno chcesz się wylogować?" ,
+            showDenyButton: true,
+            confirmButtonText: "Tak",
+            denyButtonText: `Nie`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                Swal.fire("Do zobaczenia wkrótce !").then(() => {
+
+                    window.location.href = '/logout'
+                });
+            }
+        });
+
+
+    }
+
+
+
+
+
+    categoryData.push({name: 'Rest', planned: rest});
+
+
+    $(function (){
+        $("tr[id*='transaction']").click(function (){
+
+            var transactionId = $(this).prop('id').split('-')[1];
+
+            window.location.href = '/budget/'+ budgetId + '/transaction/' + transactionId;
+        });
+    });
+
+
+    $(function (){
+        $("tr[id*='category']").click(function (){
+
+            var categoryId = $(this).prop('id').split('-')[1];
+
+            window.location.href = '/budget/'+ budgetId + '/group/' + groupId + '/category/' + categoryId;
+        });
+    });
+
+
+
+
+
+
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var pageParam = urlParams.get('page');
+
+
+    function loadCategoriesData(groupId,tableBody,page,div) {
+
+        var url = '/api/category/data';
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                groupId: groupId,
+                page: page,
+                size: 5,
+                sort: 'planned,desc',
+                search: '',
+            },
+            dataType: 'json',
+            success: function(data) {
+
+
+                if(Array.isArray(data.content)){
+
+                    if(data.content.length !== 0){
+                        renderTableForCategory(data.content,tableBody);
+                        if(data.content.length === 5)
+                        { generatePaginationForCategory(data.number, data.totalPages, div ,url,groupId,tableBody);}
+                    }
+
+                } else {
+
+                    console.error("Error from response server")
+                }
+
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+    function generatePaginationForCategory(currentPage, totalPages, div, url , groupId, tableBody) {
+        var paginationDiv = $(div);
+        paginationDiv.empty();
+        var paginationList = $('<ul class="pagination justify-content-start"></ul>');
+
+        for (var i = 0; i < totalPages; i++) {
+            var pageLink = $('<a class="page-link" href="#"></a>').text(i + 1);
+            if (i === currentPage) {
+                pageLink.addClass('active');
+            }
+
+            (function (pageNumber) {
+                pageLink.click(function (event) {
+                    event.preventDefault();
+                    loadCategoriesData(groupId,tableBody,pageNumber, div);
+                });
+            })(i);
+
+            paginationList.append($('<li class="page-item"></li>').append(pageLink.attr('href', url + '?page=' + i)));
+        }
+
+
+        paginationDiv.show().append($('<nav aria-label="Page navigation"></nav>').append(paginationList));
+
+
+        window.onpopstate = function(event) {
+            var pageNumber = event.state.pageNumber || 0;
+            loadCategoriesData(groupId,tableBody,pageNumber, div);
+        };
+    }
+
+    function renderTableForCategory(data, tableBody) {
+        var transactionTableBody = $(tableBody);
+        transactionTableBody.empty();
+
+        data.forEach(function(category) {
+
+            var row = '<tr data-category-id="' + category.id + '">';
+            row += '<td>' + category.name + '</td>';
+            row += '<td>' + parseFloat(category.planned).toFixed(2)  + '</td>';
+            row += '<td>' + parseFloat(category.spent).toFixed(2) + ' ' + category.currency + '</td>';
+            row += '<td>' + parseFloat(category.remaing).toFixed(2) + ' ' + category.currency + '</td>';
+
+            transactionTableBody.append(row);
+        });
+
+    }
+
+    function loadSubscriptionData(page) {
+
+        var url = '/api/subscription/dataBudget';
+        var budgetId = /*[[${budgetId}]]*/ 0;
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                budgetId: budgetId,
+                search: '',
+                page: page,
+                size: 5,
+                sort: 'name,desc',
+            },
+            dataType: 'json',
+            success: function(data) {
+
+
+                if(Array.isArray(data.content)){
+                    renderTableForSubscription(data.content);
+
+                    if(data.content.length === 5)
+                    { generatePaginationForSubscription(data.number,data.totalPages)}
+
+                } else {
+
+                    console.error("Error from response server")
+                }
+
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+    function generatePaginationForSubscription(currentPage, totalPages) {
+        var paginationDiv = $('#paginationDiv3');
+        paginationDiv.empty();
+        var paginationList = $('<ul class="pagination justify-content-start"></ul>');
+
+        for (var i = 0; i < totalPages; i++) {
+            var pageLink = $('<a class="page-link" href="#"></a>').text(i + 1);
+            if (i === currentPage) {
+                pageLink.addClass('active');
+            }
+
+            (function (pageNumber) {
+                pageLink.click(function (event) {
+                    event.preventDefault();
+                    loadSubscriptionData(pageNumber);
+                });
+            })(i);
+
+            paginationList.append($('<li class="page-item"></li>').append(pageLink.attr('href', '\'/api/subscription/dataBudget?page=' + i)));
+        }
+
+
+        paginationDiv.show().append($('<nav aria-label="Page navigation"></nav>').append(paginationList));
+
+
+        window.onpopstate = function(event) {
+            var pageNumber = event.state.pageNumber || 0;
+            loadSubscriptionData(pageNumber);
+        };
+    }
+
+    function renderTableForSubscription(data) {
+        var subscriptionTableBody = $('#subscriptionTableBody');
+        subscriptionTableBody.empty();
+
+        data.forEach(function(subscription) {
+            var row = '<tr data-subscription-id="' + subscription.id + '">';
+            row += '<td>' + subscription.name + '</td>';
+            row += '<td>' + parseFloat(subscription.total).toFixed(2) + ' ' + subscription.currency + '</td>';
+            var paidText = subscription.paid ? 'Tak' : 'Nie';
+            var isChecked = subscription.paid ? 'checked' : '';
+            row += '<td>' + '<form action="">\n' +
+                '    <input type="checkbox" name="checkbox" ' + isChecked +'/>\n' +
+                '    '  + paidText +
+                '</form>'
+                + '</td>';
+            row += '</tr>';
+            subscriptionTableBody.append(row);
+
+
+            var checkbox = subscriptionTableBody.find('tr[data-subscription-id="' + subscription.id + '"] input[type="checkbox"]');
+            checkbox.change(function() {
+
+                var isChecked = $(this).prop('checked');
+
+                if (isChecked) {
+                    handleCheckboxChecked(subscription.id);
+                } else {
+                    handleCheckboxUnchecked(subscription.id);
+                }
+            });
+        });
+    }
+
+    function handleCheckboxChecked(subscriptionId) {
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/subscription/'+ budgetId + '/'  + subscriptionId +'/isPaid',
+            success: function() {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Płatność została dodana",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            },
+            error: function(error) {
+                console.error('Error: Unable to check the checkbox for subscription ID: ' + subscriptionId);
+            }
+        });
+
+        setTimeout(function (){
+
+            location.reload();
+
+        }, 1550);
+
+    }
+
+
+    function handleCheckboxUnchecked(subscriptionId) {
+        $.ajax({
+            type: 'PUT',
+            url: '/api/subscription/'+ budgetId + '/'  + subscriptionId +'/isNotPaid',
+            success: function() {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Płatność została usunięta",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            },
+            error: function(error) {
+                console.error('Error: Unable to check the checkbox for subscription ID: ' + subscriptionId);
+            }
+        });
+
+        setTimeout(function (){
+
+            location.reload();
+
+        }, 1550);
+    }
+
+
+
+    $('#editGroundCostButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/group/' + groupIdGround;
+
+    });
+
+    function addSalary (){
+
+        window.location.href = '/budget/' + budgetId + '/group/' + groupIdGround;
+
+    }
+
+    $('#salaryButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/group/' + groupIdGround + '#salary';
+
+    });
+
+    $('#editAdditionalCostButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/group/' + groupIdAdditional;
+
+    });
+
+    $('#editSubscriptionButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/subscription';
+
+    });
+
+    $('#addNewTransactionButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/transaction';
+
+    });
+
+    $('#addNewCreditButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/credit';
+
+    });
+
+    $('#addNewSubButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/subscription';
+
+    });
+
+    $('#budgetList').on('click', function (){
+
+        window.location.href = '/panel/' ;
+
+    });
+
+
+    $('#transferButton').on('click', function (){
+
+        var budgetId = /*[[${budget.id}]]*/ 0;
+        var url = '/api/budget/'+ budgetId +'/transfer';
+
+
+        $.ajax({
+            type: 'PUT',
+            url: url,
+
+            success: function() {
+
+                console.log("Success transfer")
+
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+        });
+
+        window.location.href = '/budget/' + budgetId ;
+
+    });
+
+
+
+
+    $('#categoryTableBody').on('click', 'tr', function () {
+
+        var categoryId = $(this).data('category-id');
+
+        window.location.href = '/budget/' + budgetId + '/group/' + groupIdGround + '/category/' + categoryId;
+    });
+
+    $('#additionalTableBody').on('click', 'tr', function () {
+
+        var categoryId = $(this).data('category-id');
+
+        window.location.href = '/budget/' + budgetId + '/group/' + groupIdAdditional + '/category/' + categoryId;
+    });
+
+
+
+    function loadTransactionsData() {
+
+        var url = '/api/transaction/dataBudget';
+        var budgetId = /*[[${budget.id}]]*/ 0;
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                budgetId: budgetId,
+                page: 0,
+                size: 10,
+                sort: 'date,desc',
+                search: '',
+            },
+            dataType: 'json',
+            success: function(data) {
+
+
+                if(Array.isArray(data.content)){
+
+                    renderTableForTransaction(data.content);
+                } else {
+
+                    console.error("Error from response server")
+                }
+
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+    function renderTableForTransaction(data) {
+        var transactionTableBody = $('#transactionTableBody');
+        transactionTableBody.empty();
+
+        data.forEach(function (transaction) {
+            var row = '<tr data-transaction-id="' + transaction.id + '">';
+            row += '<td>' + formatDate(transaction.date) + '</td>';
+            row += '<td>' + transaction.category.name + '</td>';
+            row += '<td>' + parseFloat(transaction.total).toFixed(2) + ' ' + transaction.currency + '</td>';
+            row += '<td>' + transaction.note + '</td>';
+            row += '</tr>';
+            transactionTableBody.append(row);
+        });
+    }
+
+
+    $('#transactionTableBody').on('click', 'tr', function () {
+
+        var transactionId = $(this).data('transaction-id');
+        var budgetId = /*[[${budget.getId()}]]*/ 0;
+
+        window.location.href = '/budget/' + budgetId + '/transaction/' + transactionId;
+    });
+
+
+
+
+
+    function formatDate(dateString) {
+        var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        var formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+        return formattedDate;
+    }
+
+
+    (function (H) {
+        H.seriesTypes.pie.prototype.animate = function (init) {
+            const series = this,
+                chart = series.chart,
+                points = series.points,
+                {
+                    animation
+                } = series.options,
+                {
+                    startAngleRad
+                } = series;
+
+            function fanAnimate(point, startAngleRad) {
+                const graphic = point.graphic,
+                    args = point.shapeArgs;
+
+                if (graphic && args) {
+
+                    graphic
+                        // Set inital animation values
+                        .attr({
+                            start: startAngleRad,
+                            end: startAngleRad,
+                            opacity: 1
+                        })
+                        // Animate to the final position
+                        .animate({
+                            start: args.start,
+                            end: args.end
+                        }, {
+                            duration: animation.duration / points.length
+                        }, function () {
+                            // On complete, start animating the next point
+                            if (points[point.index + 1]) {
+                                fanAnimate(points[point.index + 1], args.end);
+                            }
+                            // On the last point, fade in the data labels, then
+                            // apply the inner size
+                            if (point.index === series.points.length - 1) {
+                                series.dataLabelsGroup.animate({
+                                        opacity: 1
+                                    },
+                                    void 0,
+                                    function () {
+                                        points.forEach(point => {
+                                            point.opacity = 1;
+                                        });
+                                        series.update({
+                                            enableMouseTracking: true
+                                        }, false);
+                                        chart.update({
+                                            plotOptions: {
+                                                pie: {
+                                                    innerSize: '40%',
+                                                    borderRadius: 8
+                                                }
+                                            }
+                                        });
+                                    });
+                            }
+                        });
+                }
+            }
+
+            if (init) {
+                // Hide points on init
+                points.forEach(point => {
+                    point.opacity = 0;
+                });
+            } else {
+                fanAnimate(points[0], startAngleRad);
+            }
+        };
+    }(Highcharts));
+
+
+    const colors = Highcharts.getOptions().colors.map((c, i) =>
+        Highcharts.color(Highcharts.getOptions().colors[1])
+            .brighten((i - 3) / 7)
+            .get()
+    );
+
+    var chartDataGround = categoryData.map(category => ({
+        name: category.name,
+        y: category.planned
+    }));
+
+    var chartDataCredit = creditData.map(credit => ({
+        name: credit.name,
+        totalPart: credit.TotalParts,
+        actualPart: credit.ActualParts
+    }));
+
+    var chartDataSpent = categoryData.map(category => ({
+        name: category.name,
+        y: category.spent
+    }));
+
+
+    const filteredData = chartDataSpent.filter(item => item.y > 0);
+
+    const minObjectsToShow = 3;
+
+
+            Highcharts.chart('chartjs', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie',
+                    backgroundColor: 'transparent',
+                },
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            symbolStroke: '#FFF',
+                            theme: {
+                                fill: 'transparent'
+                            }
+                        }
+                    }
+                },
+                title: {
+                    text: 'Planowo',
+                    align: 'left',
+                    style: {
+                        color: '#FFF'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        colors,
+                        borderRadius: 5,
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                            distance: -50,
+                            filter: {
+                                property: 'percentage',
+                                operator: '>',
+                                value: 4
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    enableMouseTracking: false,
+                    name: 'Percent',
+                    animation: {
+                        duration: 500,
+                    },
+                    defer: 0,
+                    colorByPoint: true,
+                    data: chartDataGround,
+                }]
+            });
+
+
+    Highcharts.chart('chartCredit', {
+        chart: {
+            type: 'bar',
+            backgroundColor: 'transparent'
+        },
+        exporting:{
+            buttons:{
+                contextButton: {
+                    symbolStroke: '#FFF',
+                    theme: {
+                        fill: 'transparent'
+                    }
+                }
+            }
+        },
+
+        title: {
+            text: 'Postęp spłaty kredytów',
+            align: 'left',
+            style: {
+                color: '#FFF'
+            }
+        },
+        xAxis: {
+            categories: [''],
+            title: {
+                text: null
+            },
+
+        },
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: 'Procent spłaty kredytu',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify',
+                format: '{value}%'
+            },
+            gridLineWidth: 0
+        },
+        tooltip: {
+            valueSuffix: '%'
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 5,
+                borderColor: 'transparent',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%',
+                    style: {
+                        textOutline: 'none',
+                        color: '#FFF'
+                    }
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 0,
+            floating: true,
+            borderWidth: 0,
+            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#234183',
+            shadow: true,
+            itemStyle: {
+                color: '#ffffff',
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: chartDataCredit.map(credit => ({
+            name: credit.name,
+            data: [{
+                y: (credit.actualPart / credit.totalPart) * 100,
+                totalPart: credit.totalPart,
+                actualPart: credit.actualPart
+            }]
+        }))
+    });
+
+    if(filteredData.length >= minObjectsToShow) {
+
+        Highcharts.chart('chartSpent', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                backgroundColor: 'transparent',
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        symbolStroke: '#FFF',
+                        theme: {
+                            fill: 'transparent'
+                        }
+                    }
+                }
+            },
+            title: {
+                text: 'Wydane pieniądze',
+                align: 'left',
+                style: {
+                    color: '#FFF'
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    colors,
+                    borderRadius: 5,
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                        distance: -50,
+                        filter: {
+                            property: 'percentage',
+                            operator: '>',
+                            value: 4
+                        }
+                    }
+                }
+            },
+            series: [{
+                enableMouseTracking: false,
+                name: 'Percent',
+                animation: {
+                    duration: 500
+                },
+                colorByPoint: true,
+                data: chartDataSpent
+            }]
+        });
+
+    }
+
+
+</script>
+
+</html>

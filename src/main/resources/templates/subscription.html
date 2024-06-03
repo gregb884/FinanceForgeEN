@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="img/logo-head.png" type="image/x-icon">
+
+
+
+
+
+    <style>
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mulish:ital,wght@1,300&display=swap');
+
+        .gradient-custom {
+            background: linear-gradient(to bottom, rgba(77, 77, 77, 1), rgba(20, 21, 30, 1));
+            width: 100%;
+            height: 100%;
+        }
+
+        body{
+
+            margin: 0;
+            box-sizing: border-box;
+            padding-top: 5%;
+        }
+
+        li{
+
+            cursor: pointer;
+        }
+
+        .mainName {
+            position: relative;
+            margin-left: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        header {
+            position: fixed;
+            top: 0%;
+            background-color: whitesmoke;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .month span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .month span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .month:hover span {
+            padding-right: 25px;
+            background: transparent;
+        }
+
+        .month:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .id {
+            position: absolute;
+            left: 80%;
+            top: 30%;
+        }
+
+        .textid {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+
+        .grid-container{
+
+            position: relative;
+            top: 5px;
+            left: 5px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            @media (max-width: 800px) {
+
+                font-size: 10px;
+            }
+        }
+
+        .groundText{
+
+            font-size: 30px;
+            color: whitesmoke;
+            margin-top: 40px;
+            text-align: center;
+
+            @media (max-width: 800px) {
+
+                font-size: 13px;
+            }
+
+        }
+
+        .grid-item{
+
+            margin-left: 10px;
+        }
+        .table{
+
+            text-align: center;
+        }
+
+
+        .grid-item{
+
+            width: 40%;
+
+            margin-top: 60px;
+        }
+
+        .grid-item2{
+
+            width: 50%;
+
+            margin-top: 60px;
+        }
+
+
+        .bg-dark{
+
+            width: 100%;
+            margin-top: 2%;
+        }
+
+        .finish{
+            margin-top: 50px;
+        }
+
+
+        .finish:hover{
+
+            background-color: green;
+        }
+
+        .table{
+
+            cursor: pointer;
+        }
+
+
+        .paginationDiv .pagination .page-link {
+            background-color: #262424 !important;
+            color: whitesmoke !important;
+            border-color: #262424;
+        }
+
+        .paginationDiv .pagination .page-item.active .page-link {
+            background-color: #fff !important;
+            color: whitesmoke !important;
+        }
+
+
+
+        button, input {
+            font: 1em Hind, sans-serif;
+            line-height: 1.5em;
+        }
+        input {
+            color: #171717;
+        }
+        .search-bar {
+            display: flex;
+        }
+
+        .search-bar input,
+        .search-btn,
+        .search-btn:before,
+        .search-btn:after {
+            transition: all 0.25s ease-out;
+        }
+        .search-bar input,
+        .search-btn {
+            width: 3em;
+            height: 3em;
+        }
+        .search-bar input:invalid:not(:focus),
+        .search-btn {
+            cursor: pointer;
+        }
+        .search-bar,
+        .search-bar input:focus,
+        .search-bar input:valid  {
+            width: 100%;
+        }
+        .search-bar input:focus,
+        .search-bar input:not(:focus) + .search-btn:focus {
+            outline: transparent;
+        }
+        .search-bar {
+            margin: auto;
+            padding: 1.5em;
+            justify-content: center;
+            max-width: 30em;
+        }
+        .search-bar input {
+            background: transparent;
+            border-radius: 1.5em;
+            box-shadow: 0 0 0 0.4em #171717 inset;
+            padding: 0.75em;
+            transform: translate(0.5em,0.5em) scale(0.5);
+            transform-origin: 100% 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .search-bar input::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+        .search-bar input:focus,
+        .search-bar input:valid {
+            background: #fff;
+            border-radius: 0.375em 0 0 0.375em;
+            box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+            transform: scale(1);
+        }
+        .search-btn {
+            background: #171717;
+            border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+            padding: 0.75em;
+            position: relative;
+            transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+            transform-origin: 0 50%;
+        }
+        .search-btn:before,
+        .search-btn:after {
+            content: "";
+            display: block;
+            opacity: 0;
+            position: absolute;
+        }
+        .search-btn:before {
+            border-radius: 50%;
+            box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+            top: 0.75em;
+            left: 0.75em;
+            width: 1.2em;
+            height: 1.2em;
+        }
+        .search-btn:after {
+            background: #f1f1f1;
+            border-radius: 0 0.25em 0.25em 0;
+            top: 51%;
+            left: 51%;
+            width: 0.75em;
+            height: 0.25em;
+            transform: translate(0.2em,0) rotate(45deg);
+            transform-origin: 0 50%;
+        }
+        .search-btn span {
+            display: inline-block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+        }
+
+        .search-bar input:focus + .search-btn,
+        .search-bar input:valid + .search-btn {
+            background: #2762f3;
+            border-radius: 0 0.375em 0.375em 0;
+            transform: scale(1);
+        }
+        .search-bar input:focus + .search-btn:before,
+        .search-bar input:focus + .search-btn:after,
+        .search-bar input:valid + .search-btn:before,
+        .search-bar input:valid + .search-btn:after {
+            opacity: 1;
+        }
+        .search-bar input:focus + .search-btn:hover,
+        .search-bar input:valid + .search-btn:hover,
+        .search-bar input:valid:not(:focus) + .search-btn:focus {
+            background: #0c48db;
+        }
+        .search-bar input:focus + .search-btn:active,
+        .search-bar input:valid + .search-btn:active {
+            transform: translateY(1px);
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+            input {
+                color: #f1f1f1;
+            }
+
+            .search-bar input {
+                box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+            }
+            .search-bar input:focus,
+            .search-bar input:valid {
+                background: #3d3d3d;
+                box-shadow: 0 0 0 0.1em #3d3d3d inset;
+            }
+            .search-btn {
+                background: #f1f1f1;
+            }
+        }
+
+
+
+
+
+        th {
+            cursor: pointer;
+            position: relative;
+        }
+
+
+        .btn{
+
+            @media (max-width: 800px) {
+
+                font-size: 10px;
+            }
+
+        }
+
+        .returnSpan{
+
+            position: relative;
+            top: 5px;
+
+        }
+
+        .end{
+
+            height: 500px;
+            display: flex;
+
+        }
+
+        #logoutButton{
+
+
+            position: relative;
+            right: 10px;
+            bottom: 4px;
+            cursor: pointer;
+            transition: all 0.5s;
+            border-radius: 5px;
+        }
+
+        #logoutButton span{
+
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        #logoutButton span:after{
+
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        #logoutButton:hover{
+
+            background : green;
+        }
+
+        #logoutButton:active:hover{
+
+            background: transparent;
+            border-color: darkgray;
+            transform: translateY(15px);
+
+        }
+
+        #logoutButton:hover span{
+
+            padding-right: 25px;
+            background : darkgray;
+        }
+
+        #logoutButton:hover span:after{
+            opacity: 1;
+            right: 0;
+        }
+
+
+
+
+
+    </style>
+</head>
+
+
+<header>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/panel}"><div class="mainName">
+                <h2>FinanceForge</h2>
+            </div></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <button class="btn btn-outline-success me-2" id="returnToBudget" type="submit"><span class="material-symbols-outlined returnSpan">assignment_return</span> Widok budżetu</button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button id="addNewTransactionButton"  class="btn btn-outline-success me-2 nav-link " type="submit">Dodaj nową transakcje </button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="addNewCreditButton"  class="btn btn-outline-success me-2 nav-link " type="submit">Widok kredytu </button>
+                    </li>
+                </ul>
+                <span class="material-symbols-outlined" onclick="logout()" id="logoutButton" >logout</span>
+                <span class="navbar-text">
+
+    <h3 class="textid">
+
+        <span class="material-symbols-outlined person">person</span>
+        <span th:text="${#strings.substringBefore(user.getUsername() ,'@')}">gregb884</span>
+
+    </h3>
+
+      </span>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+</header>
+
+<body class="gradient-custom">
+
+<div class="grid-container" style="display: flex">
+    <div class="grid-item">
+
+
+        <div class="groundText" >Ostatnio dodane</div>
+
+
+        <table id="table" class="table table-dark table-hover">
+            <thead>
+            <tr>
+
+                <th onclick="toggleSortDirection('dateHeader','name','nameSortArrow')" scope="col" id="nameHeader" > Nazwa
+                    <span id="nameSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+                <th onclick="toggleSortDirection('dateHeader','total','totalSortArrow')" scope="col" id="totalHeader" > Suma
+                    <span id="totalSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+                <th onclick="toggleSortDirection('dateHeader','paid','paidSortArrow')" scope="col" id="paidHeader" > Opłacone
+                    <span id="paidSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
+                </th>
+                <th><span class="material-symbols-outlined">keyboard_double_arrow_down</span></th>
+
+            </tr>
+            </thead>
+            <tbody id="subscriptionTableBody">
+            </tbody>
+        </table>
+
+        <div class="paginationDiv" id="paginationDiv">
+
+        </div>
+
+        <form action="" onsubmit="searchSubscription(event)" class="search-bar">
+            <input placeholder="Search by Name" type="search" id="searchInput" name="search" pattern=".*\S.*" required>
+            <button class="search-btn" onclick="searchSubscription()">
+                <span>Search</span>
+            </button>
+        </form>
+
+    </div>
+    <div class="grid-item2">
+
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem; ">
+                    <div class="card-body p-5 text-center">
+
+
+                        <form th:method="POST" onsubmit="return validateForm()"  th:object="${subscription}" th:action="@{/budget/{budgetId}/subscription/new (budgetId = ${budgetId})}">
+
+                            <p class="text-white-50 mb-5">Wprowadź subskrypcje </p>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="name" name="username" th:field="${subscription.name}" class="form-control form-control-lg" />
+                                <label class="form-label" >Nazwa</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="total" name="password" pattern="^\d+(\.\d{1,2})?$" th:field="${subscription.total}" class="form-control form-control-lg" />
+                                <label class="form-label" for="total">Suma</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <select th:field="${subscription.currency}" id="currency" class="form-select form-select-sm" aria-label="Small select example">
+                                    <option th:each="currency : ${T(com.budget.financeforge.enumpaket.Currency).values()}" th:value="${currency}" th:text="${currency}"></option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <label for="booleanValue" class="form-label">Opłacona już w tym miesiącu ? </label>
+                                <select th:field="${subscription.paid}" id="booleanValue">
+                                    <option th:value="true">Tak</option>
+                                    <option th:value="false" >Jeszcze nie</option>
+                                </select>
+
+
+                            </div>
+
+
+
+
+                            <button class="btn btn-outline-light btn-lg px-10" type="submit">Zapisz</button>
+                        </form>
+
+                        <form method="GET"  th:action="@{/budget/{budgetId}(budgetId = ${budgetId})}">
+                            <button class="btn btn-outline-light btn-lg px-10 finish" type="submit">Zakończ !</button>
+                        </form>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<div id="end" class="end"></div>
+
+<script th:inline="javascript">
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        var searchInput = $('#searchInput');
+
+        searchInput.on('input', function() {
+            searchSubscription();
+        });
+
+        loadSubscriptionData(0,'name,desc');
+
+    });
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var pageParam = urlParams.get('page');
+    var currentPage = pageParam ? parseInt(pageParam) : 0;
+
+    var budgetId = /*[[${budgetId}]]*/  0;
+
+
+    $('#addNewTransactionButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/transaction';
+
+    });
+
+    $('#addNewCreditButton').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId + '/credit';
+
+    });
+
+    $('#returnToBudget').on('click', function (){
+
+        window.location.href = '/budget/' + budgetId ;
+
+    });
+
+    function toggleSortDirection(headerId,column, id) {
+        var arrowElement = document.getElementById(id);
+        var currentDirection = arrowElement.innerHTML;
+
+        if (currentDirection === '↑') {
+            arrowElement.innerHTML = '↓';
+            loadSubscriptionData(0,column+',asc')
+        } else {
+            arrowElement.innerHTML = '↑';
+            loadSubscriptionData(0,column+',desc')
+        }
+    }
+
+    function loadSubscriptionData(page,sort) {
+
+        var url = '/api/subscription/dataBudget';
+        var budgetId = /*[[${budgetId}]]*/ 0;
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                budgetId: budgetId,
+                search: getSearchText(),
+                page: page,
+                size: 10,
+                sort: sort,
+            },
+            dataType: 'json',
+            success: function(data) {
+
+
+                if(Array.isArray(data.content)){
+                    console.log(data);
+                    renderTableForSubscription(data.content);
+                    generatePagination(data.number, data.totalPages,sort);
+
+                } else {
+
+                    console.error("Error from response server")
+                }
+
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+    function getSearchText() {
+        return document.getElementById("searchInput").value;
+    }
+
+    function renderTableForSubscription(data) {
+        var subscriptionTableBody = $('#subscriptionTableBody');
+        subscriptionTableBody.empty();
+
+        data.forEach(function(subscription) {
+            var row = '<tr data-subscription-id="' + subscription.id + '">';
+            row += '<td>' + subscription.name + '</td>';
+            row += '<td>' + subscription.total + ' ' + subscription.currency + '</td>';
+            var paidText = subscription.paid ? 'Tak' : 'Nie';
+            row += '<td>' + paidText + '</td>';
+            row += '<td>' + ' <div class="btn-group dropend">\n' +
+                '            <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">\n' +
+                '              <span class="material-symbols-outlined">add</span>\n' +
+                '            </button>\n' +
+                '\n' +
+                '            <ul class="dropdown-menu dropdown-menu-dark" >\n' +
+                '              <li>\n' +
+                '                <a class="dropdown-item " onclick="deleteSubscription(' + subscription.id + ')" >Delete Subscription</a>\n' +
+                '              </li>\n' +
+                '              <li><a class="dropdown-item " onclick="redirectToEditSubscription(' + subscription.id + ')" >Edit Subscription</a></li>\n' +
+                '            </ul>\n' +
+                '\n' +
+                '          </div>' + '</td>';
+            row += '</tr>';
+            subscriptionTableBody.append(row);
+        });
+
+    }
+
+    function deleteSubscription(subscriptionId) {
+
+        var budgetId = /*[[${budgetId}]]*/ 0;
+
+        var url = '/budget/' + budgetId + '/subscription/' + subscriptionId + '/delete';
+
+        $.ajax({
+            type: 'DELETE',
+            url: url,
+            success: function() {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Nie zapomnij edytować Planowanych wydatków na subskrypcje ! ",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                setTimeout(function (){
+
+                    location.reload();
+
+                }, 2050);
+            },
+            error: function() {
+
+                Swal.fire({
+                    title: 'Nie możesz usunąć tej Subskrypcji',
+                })
+
+            }
+        });
+
+    }
+
+    function redirectToEditSubscription(subscriptionId) {
+
+        var budgetId = /*[[${budgetId}]]*/ 0;
+
+        window.location.href = '/budget/' + budgetId + '/subscription/' + subscriptionId;
+
+    }
+
+
+
+    function logout(){
+
+
+        Swal.fire({
+            title: "Are you sure you want to log out?" ,
+            showDenyButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: `No`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                Swal.fire("See you soon !").then(() => {
+
+                    window.location.href = '/logout'
+                });
+            }
+        });
+
+
+    }
+
+
+
+
+
+    function generatePagination(currentPage, totalPages, sort) {
+        var paginationDiv = $('#paginationDiv');
+        paginationDiv.empty();
+        var paginationList = $('<ul class="pagination justify-content-start"></ul>');
+
+        for (var i = 0; i < totalPages; i++) {
+            var pageLink = $('<a class="page-link" href="#"></a>').text(i + 1);
+            if (i === currentPage) {
+                pageLink.addClass('active');
+            }
+
+            (function (pageNumber) {
+                pageLink.click(function (event) {
+                    event.preventDefault();
+                    loadSubscriptionData(pageNumber,sort);
+                });
+            })(i);
+
+            paginationList.append($('<li class="page-item"></li>').append(pageLink.attr('href', '/api/subscription/data?page=' + i)));
+        }
+
+
+        paginationDiv.show().append($('<nav aria-label="Page navigation"></nav>').append(paginationList));
+
+
+        window.onpopstate = function(event) {
+            var pageNumber = event.state.pageNumber || 0;
+            loadSubscriptionData(pageNumber);
+        };
+    }
+    function searchSubscription() {
+        event.preventDefault();
+        loadSubscriptionData(0);
+    }
+
+    function validateForm() {
+
+
+        var name = document.getElementById("name").value;
+        var total = document.getElementById("total").value;
+        var booleanValue = document.getElementById("booleanValue").value;
+        var currency = document.getElementById("currency").value;
+
+        if ( !total || !name || !booleanValue || ! currency) {
+            alert("Please fill in all required fields.");
+
+            return false;
+        }
+
+        return true;
+    }
+
+
+</script>
+</body>
+
+</html>
