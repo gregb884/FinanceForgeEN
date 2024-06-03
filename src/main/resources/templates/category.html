@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -473,7 +473,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <form method="get" th:action="@{/budget/{budgetId} (budgetId = ${budget.id})}" class="container-fluid justify-content-start">
-                        <button class="btn btn-outline-success me-2" type="submit"><span class="material-symbols-outlined returnSpan">assignment_return</span> widok budżetu </button>
+                        <button class="btn btn-outline-success me-2" type="submit"><span class="material-symbols-outlined returnSpan">assignment_return</span> View Budget </button>
                     </form>
 
                 </ul>
@@ -512,22 +512,22 @@
 
                         <form th:method="POST" th:object="${category}" >
 
-                            <p class="text-white-50 mb-5">Edytuj kategorie </p>
+                            <p class="text-white-50 mb-5">Edit Category </p>
 
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text" name="text" th:field="${category.name}" class="form-control form-control-lg" />
-                                <label class="form-label" >Nazwa</label>
+                                <label class="form-label" >Name</label>
                             </div>
 
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text"  name="password" th:field="${category.planned}" pattern="^\d+(\.\d{1,2})?$" class="form-control form-control-lg" />
-                                <label class="form-label" >Planowane</label>
+                                <label class="form-label" >Planned</label>
                             </div>
 
 
-                            <button class="btn btn-outline-light btn-lg px-10" type="submit">Dodaj</button>
+                            <button class="btn btn-outline-light btn-lg px-10" type="submit">Save</button>
                         </form>
 
 
@@ -553,16 +553,16 @@
 
                         <form th:method="POST" id="form" onsubmit="return validateForm()"  th:object="${transaction}" th:action="@{/budget/{budgetId}/transaction/subcategory (budgetId = ${category.getGroup().getBudget().getId()})}">
 
-                            <p class="text-white-50 mb-5">Dodaj nową transakcje do tej kategori </p>
+                            <p class="text-white-50 mb-5">Add new Transaction for this Category </p>
 
                             <div class="form-outline form-white mb-4">
                                 <input type="date" id="username" name="username" th:field="${transaction.date}" class="form-control form-control-lg" />
-                                <label class="form-label" for="username">Data transakcji</label>
+                                <label class="form-label" for="username">Transaction Date</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text" id="total" name="password" pattern="^\d+(\.\d{1,2})?$" th:field="${transaction.total}" class="form-control form-control-lg" />
-                                <label class="form-label" for="total">Suma</label>
+                                <label class="form-label" for="total">Total</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
@@ -574,10 +574,10 @@
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text" name="text" th:field="${transaction.note}" class="form-control form-control-lg" />
-                                <label class="form-label" >Notka</label>
+                                <label class="form-label" >Note</label>
                             </div>
 
-                            <button class="submitButton btn btn-outline-light btn-lg px-10" type="submit">Zapisz</button>
+                            <button class="submitButton btn btn-outline-light btn-lg px-10" type="submit">Save</button>
 
                             <div style="visibility: hidden" >
                                 <select th:field="${transaction.category}" class="form-select form-select-sm" aria-label="Small select example">
@@ -589,7 +589,7 @@
                         </form>
 
                         <form method="GET"  th:action="@{/budget/{budgetId}(budgetId = ${category.getGroup().getBudget().getId()})}">
-                            <button class="btn btn-outline-light btn-lg px-10 finish" type="submit">Gotowe !</button>
+                            <button class="btn btn-outline-light btn-lg px-10 finish" type="submit">Finish !</button>
                         </form>
 
 
@@ -607,26 +607,26 @@
 
         <div class="form-check form-switch hidden-form2">
             <input class="form-check-input" type="checkbox" role="switch" onclick="toggleForm();toggleForm2()" id="flexSwitchCheckDefault">
-            <label class="form-check-label switch" for="flexSwitchCheckDefault">Edytuj kategorie</label>
+            <label class="form-check-label switch" for="flexSwitchCheckDefault">Edit Category</label>
         </div>
 
 
-        <div class="groundText" >Ostatnie transakcje</div>
+        <div class="groundText" >Last Transaction</div>
 
 
         <table id="table" class="table table-dark table-hover">
             <thead>
             <tr>
-                <th onclick="toggleSortDirection('dateHeader','date','dateSortArrow')" scope="col" id="dateHeader" > Data
+                <th onclick="toggleSortDirection('dateHeader','date','dateSortArrow')" scope="col" id="dateHeader" > Date
                     <span id="dateSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
                 </th>
-                <th onclick="toggleSortDirection('dateHeader','category','categorySortArrow')" scope="col" id="categoryHeader" > Kategoria
+                <th onclick="toggleSortDirection('dateHeader','category','categorySortArrow')" scope="col" id="categoryHeader" > Category
                     <span id="categorySortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
                 </th>
-                <th onclick="toggleSortDirection('dateHeader','total','totalSortArrow')" scope="col" id="totalHeader" > Suma
+                <th onclick="toggleSortDirection('dateHeader','total','totalSortArrow')" scope="col" id="totalHeader" > Total
                     <span id="totalSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
                 </th>
-                <th onclick="toggleSortDirection('dateHeader','note','noteSortArrow')" scope="col" id="noteHeader" > Notka
+                <th onclick="toggleSortDirection('dateHeader','note','noteSortArrow')" scope="col" id="noteHeader" > Note
                     <span id="noteSortArrow" style="display: inline-block; vertical-align: middle;">&#x2195;</span>
                 </th>
 
@@ -788,7 +788,7 @@
 
                 Swal.fire({
                     icon: "success",
-                    title: "Transakcja została usunięta",
+                    title: "The transaction has been deleted",
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -802,7 +802,7 @@
             error: function() {
 
                 Swal.fire({
-                    title: 'Nie możesz usunąc tej transakcji',
+                    title: 'You cannot delete this transaction',
                 })
 
             }
@@ -861,7 +861,7 @@
         var currency = document.getElementById("currency").value;
 
         if (!total || !currency) {
-            alert("Wypełnij wszystkie wymagane pola");
+            alert("Please fill in all required fields");
             return false;
         }
 
@@ -884,17 +884,17 @@
 
 
             Swal.fire({
-                title: "Wymienić walute ? Aktualny kurs EUR/PLN  : " + rate,
+                title: "Exchange currency? Current exchange rate for EUR/PLN : " + rate,
                 showDenyButton: true,
-                confirmButtonText: "Zapisz",
-                denyButtonText: `Wróć`,
+                confirmButtonText: "Save",
+                denyButtonText: `Back`,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire("Zapisano!", "", "success").then(() => {
+                    Swal.fire("Saved!", "", "success").then(() => {
                         document.getElementById('form').submit();
                     });
                 } else if (result.isDenied) {
-                    Swal.fire("Zmiany nie zapisane", "", "info");
+                    Swal.fire("Changes not saved", "", "info");
                 }
             });
 

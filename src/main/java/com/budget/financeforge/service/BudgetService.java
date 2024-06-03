@@ -77,7 +77,7 @@ public class BudgetService {
         LocalDate startDate = budgetDto.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate = budgetDto.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        Locale locale = new Locale("pl", "PL");
+        Locale locale = new Locale("en", "US");
 
         String startMonthName = startDate.getMonth().getDisplayName(TextStyle.FULL_STANDALONE, locale);
         String endMonthName = endDate.getMonth().getDisplayName(TextStyle.FULL_STANDALONE, locale);

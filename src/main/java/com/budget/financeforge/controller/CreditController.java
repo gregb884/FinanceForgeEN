@@ -106,8 +106,9 @@ public class CreditController {
 
        if(actual == after){
 
-           redirectAttributes.addFlashAttribute("Zamknięty", "Kredyt zamknięty !");
+           redirectAttributes.addFlashAttribute("Closed", "Credit Closed !");
        }
+
 
         return "redirect:/budget/"+budgetId+"/credit";
     }

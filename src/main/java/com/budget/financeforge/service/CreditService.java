@@ -104,14 +104,14 @@ public class CreditService {
                 filter(group -> group.getName().equals("Ground Cost")).
                 findFirst().get().getCategories();
 
-        boolean hasCreditCategory = categories.stream().anyMatch(category -> "Kredyt".equals(category.getName()));
+        boolean hasCreditCategory = categories.stream().anyMatch(category -> "Credit".equals(category.getName()));
 
 
         if (!hasCreditCategory) {
 
             Category category = new Category();
 
-            category.setName("Kredyt");
+            category.setName("Credit");
 
             if(!creditDto.getCurrency().equals(budget.getCurrency()))
             {
@@ -145,12 +145,12 @@ public class CreditService {
             transaction.setCurrency(credit1.getCurrency());
             transaction.setNote(credit1.getName() + " " + credit1.getActualPart()+"/"+credit1.getTotalParts());
             transaction.setTotal(credit1.getPayment());
-            transaction.setCategory(categoryService.findCategoryIdByName("Kredyt", user, budgetId));
+            transaction.setCategory(categoryService.findCategoryIdByName("Credit", user, budgetId));
             transactionService.SaveTransaction(transaction);
             return creditRepository.save(credit1);
         }
 
-        Category category = categoryService.findCategoryIdByName("Kredyt", user, budgetId);
+        Category category = categoryService.findCategoryIdByName("Credit", user, budgetId);
 
         BigDecimal planned = category.getPlanned();
 
@@ -220,7 +220,7 @@ public class CreditService {
             transaction.setCurrency(credit.getCurrency());
             transaction.setNote(credit.getName() + " " + credit.getActualPart()+"/"+credit.getTotalParts());
             transaction.setTotal(credit.getPayment());
-            transaction.setCategory(categoryService.findCategoryIdByName("Kredyt", user,credit.getBudget().getId()));
+            transaction.setCategory(categoryService.findCategoryIdByName("Credit", user,credit.getBudget().getId()));
 
             transactionService.SaveTransaction(transaction);
         }

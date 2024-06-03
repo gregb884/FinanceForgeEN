@@ -66,7 +66,7 @@ public class BudgetApiController {
 
 
 
-        CategoryDto categoryDto = new CategoryDto(BigDecimal.ZERO, "Oszczędności");
+        CategoryDto categoryDto = new CategoryDto(BigDecimal.ZERO, "Savings");
 
 
         Transaction transaction = new Transaction();
@@ -74,7 +74,7 @@ public class BudgetApiController {
         transaction.setBudget(budget);
         transaction.setCurrency(budget.getCurrency());
         transaction.setTotal(rest);
-        transaction.setNote("Transferowanie pozostałych środków do oszczędnosci");
+        transaction.setNote("Transfer remaining funds to savings");
         transaction.setCategory(categoryService.save(categoryDto,groupId.getId(), user));
 
         transactionService.SaveTransaction(transaction);

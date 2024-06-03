@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
 
@@ -807,38 +807,38 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                    <button id="addNewTransactionButton" class="btn btn-outline-success me-2 nav-link transactionButton" type="submit">Dodaj nową transakcje</button>
+                    <button id="addNewTransactionButton" class="btn btn-outline-success me-2 nav-link transactionButton" type="submit">Add new Transaction</button>
                     </li>
 
                     <li class="nav-item">
-                        <button id="addNewCreditButton"  class="btn btn-outline-success me-2 nav-link " type="submit">Kredyt</button>
+                        <button id="addNewCreditButton"  class="btn btn-outline-success me-2 nav-link " type="submit">Credit</button>
                     </li>
                     <li class="nav-item">
-                        <button id="addNewSubButton"  onclick="addNewSubButton()" class="btn btn-outline-success me-2 nav-link " type="submit">Subskrypcje</button>
+                        <button id="addNewSubButton"  onclick="addNewSubButton()" class="btn btn-outline-success me-2 nav-link " type="submit">Subscription</button>
                     </li>
                     <li class="nav-item">
-                        <button id="budgetList"  onclick="budgetList()" class="btn btn-outline-success me-2 nav-link " type="submit">Lista budżetów</button>
+                        <button id="budgetList"  onclick="budgetList()" class="btn btn-outline-success me-2 nav-link " type="submit">Budget List</button>
                     </li>
                     <li  th:if="${settings.getIsAdditionalViewHidden()}" class="nav-item">
                         <form  method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
                             <input type="hidden" name="isAdditionalViewHidden" value="false">
-                        <button id="addNewTable"  class="btn btn-outline-success me-2 nav-link " type="submit">Widok drugiej tabeli </button>
+                        <button id="addNewTable"  class="btn btn-outline-success me-2 nav-link " type="submit">Second Table View </button>
                         </form>
                     </li>
                     <li  th:if="${settings.getIsCreditViewHidden()}" class="nav-item">
                         <form th:if="${settings.getIsCreditViewHidden()}" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
                             <input type="hidden" name="isCreditViewHidden" value="false">
-                            <button   class="btn btn-outline-success me-2 nav-link " type="submit">Dodaj widok wykresu kredytów </button>
+                            <button   class="btn btn-outline-success me-2 nav-link " type="submit">Add Credit Chart View </button>
                         </form>
                     </li>
                     <li  th:if="${settings.getIsSubscriptionViewHidden()}" class="nav-item">
                         <form th:if="${settings.getIsSubscriptionViewHidden()}" method="POST" th:action="@{/budget/{budgetId}/settings(budgetId=${budget.getId()})}">
                             <input type="hidden" name="isSubscriptionViewHidden" value="false">
-                            <button   class="btn btn-outline-success me-2 nav-link " type="submit">Dodaj widok subskrypcji </button>
+                            <button   class="btn btn-outline-success me-2 nav-link " type="submit">Add Subscription View </button>
                         </form>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-outline-success me-2 nav-link logoutHeader" onclick="logout()" type="submit">Wyloguj</button>
+                        <button class="btn btn-outline-success me-2 nav-link logoutHeader" onclick="logout()" type="submit">Logout</button>
                     </li>
 
 
@@ -901,10 +901,10 @@
             <div class="card bg-dark text-white" style="border-radius: 1rem;">
                 <div class="card-body p-5 text-center" >
 
-                    <h1 class="welcomeText">Teraz możesz utworzyć table z podstawowymi wydatkami</h1>
+                    <h1 class="welcomeText">Now you can create a table with basic expenses</h1>
 
                     <form method="get" th:action="@{/budget/{budgetId}/group/{groupId}(budgetId=${budget.getId()},groupId=${budget.groups[0].getId()})}">
-                        <button type="submit" class="btn btn-outline-primary month"><span>Dodaj podstawowe wydatki </span>  </button>
+                        <button type="submit" class="btn btn-outline-primary month"><span>Add basic expenses </span>  </button>
                     </form>
                 </div>
             </div>
@@ -932,7 +932,7 @@
 
         <div class="topStats">
 
-            <li class="balanceText">Saldo <span class="dollarSpan material-symbols-outlined">
+            <li class="balanceText">Balance <span class="dollarSpan material-symbols-outlined">
 attach_money
 </span>
             </li>
@@ -947,7 +947,7 @@ attach_money
 
             <div class="salaryText" th:if="${budget.getSalaries().isEmpty()}" >
 
-                <div onclick="addSalary()" class="balanceNumber" style="display: inline; margin-left: 10px" >Dodaj swoje wpływy aby zobaczyc saldo</div>
+                <div onclick="addSalary()" class="balanceNumber" style="display: inline; margin-left: 10px" >Add your income to see the balance.</div>
 
             </div>
 
@@ -955,7 +955,7 @@ attach_money
 
         <div id="salaryButton" class="topStats top2">
 
-            <li class="balanceText">Wpływy <span class="dollarSpan material-symbols-outlined">attach_money</span>
+            <li class="balanceText">Incoming <span class="dollarSpan material-symbols-outlined">attach_money</span>
             </li>
 
 
@@ -969,7 +969,7 @@ attach_money
 
             <div class="salaryText" th:if="${budget.getSalaries().isEmpty()}" >
 
-                <div class="balanceNumber" style="display: inline; margin-left: 10px" >Dodaj wpływy</div>
+                <div class="balanceNumber" style="display: inline; margin-left: 10px" >Add your income</div>
 
             </div>
 
@@ -979,7 +979,7 @@ attach_money
         <div onclick="openPopup()" class="topStats top1">
 
             <li class="balanceText">
-                Oszczędności <span class="dollarSpan material-symbols-outlined">
+                Savings <span class="dollarSpan material-symbols-outlined">
 attach_money
 </span>
             </li>
@@ -1004,16 +1004,16 @@ attach_money
             <button class="closeButton" id="closeBasic" type="submit"> <span class="material-symbols-outlined hideButton" >close</span></button>
         </form>
 
-        <div class="groundText" >Podstawowe wydatki</div>
+        <div class="groundText" >Basic expenses</div>
 
 
         <table th:if="${!budget.groups[0].getCategories().isEmpty()}" id="tableCategory"  class="categoryTable table table-dark table-hover">
             <thead>
             <tr>
-                <th scope="col" >Nazwa</th>
-                <th scope="col" >Planowo</th>
-                <th scope="col" >Wydano</th>
-                <th scope="col" >Pozostało <span id="editGroundCostButton" class="material-symbols-outlined editGroundCostButton" title="Edit Ground Category" style="display: inline-block; vertical-align: middle;">settings</span></th>
+                <th scope="col" >Name</th>
+                <th scope="col" >Planned</th>
+                <th scope="col" >Spent</th>
+                <th scope="col" >Remaining <span id="editGroundCostButton" class="material-symbols-outlined editGroundCostButton" title="Edit Ground Category" style="display: inline-block; vertical-align: middle;">settings</span></th>
             </tr>
             </thead>
             <tbody id="categoryTableBody">
@@ -1032,11 +1032,11 @@ attach_money
 
         <div style="display: none" class="tips" id="tips">
 
-            <h3 style="font-size: 15px;display: inline-block">W tym miesiącu musisz wydać jeszcze minimum : </h3>
+            <h3 style="font-size: 15px;display: inline-block">This month you need to spend at least: </h3>
             <h3 style="font-size: 15px;display: inline" th:text="${restToSpend}"> 2000 </h3>
             <h3 style="font-size: 15px;display: inline" th:text="${budget.getCurrency()}"> EUR </h3>
 
-            <h3 style="font-size: 15px;display: inline-block">Rzeczywiste saldo po planowanych płatnościach : </h3>
+            <h3 style="font-size: 15px;display: inline-block">Actual balance after planned payments: </h3>
             <h3 style="font-size: 15px;display: inline" th:text="${balanceAfterSpend}"> 2000 </h3>
             <h3 style="font-size: 15px;display: inline" th:text="${budget.getCurrency()}"> EUR </h3>
 
@@ -1068,7 +1068,7 @@ attach_money
 
 
         <form th:if="${budget.getCredits().isEmpty()&&!budget.groups[0].getCategories().isEmpty()}" id="newCreditForm" method="get" th:action="@{/budget/{budgetId}/credit (budgetId = ${budget.id})}">
-            <button class="groundbutton newCreditForm" > Dodaj kredyt <span class="material-symbols-outlined">add_task</span></button>
+            <button class="groundbutton newCreditForm" > Add Credit <span class="material-symbols-outlined">add_task</span></button>
 
         </form>
     </div>
@@ -1086,26 +1086,26 @@ attach_money
 
 
         <form th:if="${!budget.groups[0].getCategories().isEmpty()&& budget.getGroups().size()<2}" id="newGroupForm2" method="get" th:action="@{/budget/{budgetId}/group/addNewGroup(budgetId=${budget.getId()})}">
-            <button class="groundbutton additionalButton" >Dodaj nową grupe <span class="material-symbols-outlined">add_task</span></button>
-            <div class="tooltip">Możesz utworzyć nową grupe wydatkow np . nieplanowane </div>
+            <button class="groundbutton additionalButton" >Add new group <span class="material-symbols-outlined">add_task</span></button>
+            <div class="tooltip">Could you create a new expense category, for example, 'Unplanned'? </div>
         </form>
 
 
-        <div class="groundText additionalTextTable" th:if="${budget.groups.size() > 1}" >Dodatkowe koszta</div>
+        <div class="groundText additionalTextTable" th:if="${budget.groups.size() > 1}" >Additional costs</div>
 
         <table th:if="${budget.getGroups().size()>1}" id="additionalTable"  class="additionalTable table table-dark table-hover">
             <thead>
             <tr>
-                <th scope="col" >Nazwa</th>
-                <th scope="col" >Planowo</th>
-                <th scope="col" >Wydano</th>
-                <th scope="col" >Pozostało <span id="editAdditionalCostButton" class="material-symbols-outlined editGroundCostButton" title="Edit Additional Category" style="display: inline-block; vertical-align: middle;">settings</span>
+                <th scope="col" >Name</th>
+                <th scope="col" >Planned</th>
+                <th scope="col" >Spent</th>
+                <th scope="col" >Remaining <span id="editAdditionalCostButton" class="material-symbols-outlined editGroundCostButton" title="Edit Additional Category" style="display: inline-block; vertical-align: middle;">settings</span>
                 </th>
             </tr>
             </thead>
             <tbody id="additionalTableBody">
         <tr>
-            <td colspan="4" class="text-center">Brak kategori</td>
+            <td colspan="4" class="text-center">Empty Category List</td>
         </tr>
             </tbody>
 
@@ -1128,25 +1128,25 @@ attach_money
 
 
         <form th:if="${budget.getSubscriptions().isEmpty() && !budget.groups[0].getCategories().isEmpty()}" id="newSubscriptionForm" method="get" th:action="@{/budget/{budgetId}/subscription (budgetId=${budget.getId()})}">
-            <button class="groundbutton subButton" >Dodaj subskrypcje <span class="material-symbols-outlined">add_task</span></button>
-            <div class="tooltip">Możesz dodac tabele do subskrypcji</div>
+            <button class="groundbutton subButton" >Add Subscription <span class="material-symbols-outlined">add_task</span></button>
+            <div class="tooltip">You can add a table for subscriptions</div>
         </form>
 
-        <div class="groundText additionalTextTable" th:if="${!budget.getSubscriptions().isEmpty()}" >Subskrypcje</div>
+        <div class="groundText additionalTextTable" th:if="${!budget.getSubscriptions().isEmpty()}" >Subscription</div>
 
 
         <table th:if="${!budget.getSubscriptions().isEmpty()}" id="subscriptionTable"  class="subscriptionTable table table-dark table-hover">
             <thead>
             <tr>
-                <th scope="col" >Nazwa</th>
-                <th scope="col" >Suma</th>
-                <th scope="col" >Opłacone <span id="editSubscriptionButton" class="material-symbols-outlined editGroundCostButton" title="Edit Additional Category" style="display: inline-block; vertical-align: middle;">settings</span>
+                <th scope="col" >Name</th>
+                <th scope="col" >Total</th>
+                <th scope="col" >Paid <span id="editSubscriptionButton" class="material-symbols-outlined editGroundCostButton" title="Edit Additional Category" style="display: inline-block; vertical-align: middle;">settings</span>
                 </th>
             </tr>
             </thead>
             <tbody id="subscriptionTableBody">
             <tr>
-                <td colspan="4" class="text-center">Brak aktywnych subskrypcji</td>
+                <td colspan="4" class="text-center">No active subscriptions</td>
             </tr>
             </tbody>
 
@@ -1166,20 +1166,20 @@ attach_money
 
     <div th:if="${!budget.getTransactions().isEmpty()}" class="grid-item item7 card bg-dark text-white">
 
-        <div class="groundText additionalTextTable" >Ostatnie transakcje</div>
+        <div class="groundText additionalTextTable" >Last transactions</div>
 
         <table  id="table" class="table table-dark table-hover">
             <thead>
             <tr>
-                <th scope="col" >Data</th>
-                <th scope="col" >Kategoria</th>
-                <th scope="col" >Suma</th>
-                <th scope="col" >Notka</th>
+                <th scope="col" >Date</th>
+                <th scope="col" >Category</th>
+                <th scope="col" >Total</th>
+                <th scope="col" >Note</th>
             </tr>
             </thead>
             <tbody id="transactionTableBody">
             <tr th:if="${budget.getTransactions().isEmpty()}">
-                <td colspan="4" class="text-center">Brak dostępnych transakcji</td>
+                <td colspan="4" class="text-center">No available transactions</td>
             </tr>
             </tbody>
         </table>
@@ -1269,14 +1269,14 @@ attach_money
 
 
         Swal.fire({
-            title: "Napewno chcesz się wylogować?" ,
+            title: "Are you sure you want to log out ?" ,
             showDenyButton: true,
-            confirmButtonText: "Tak",
-            denyButtonText: `Nie`,
+            confirmButtonText: "Yes",
+            denyButtonText: `No`,
         }).then((result) => {
             if (result.isConfirmed) {
 
-                Swal.fire("Do zobaczenia wkrótce !").then(() => {
+                Swal.fire("See you soon!").then(() => {
 
                     window.location.href = '/logout'
                 });
@@ -1484,7 +1484,7 @@ attach_money
             var row = '<tr data-subscription-id="' + subscription.id + '">';
             row += '<td>' + subscription.name + '</td>';
             row += '<td>' + parseFloat(subscription.total).toFixed(2) + ' ' + subscription.currency + '</td>';
-            var paidText = subscription.paid ? 'Tak' : 'Nie';
+            var paidText = subscription.paid ? 'Yes' : 'No';
             var isChecked = subscription.paid ? 'checked' : '';
             row += '<td>' + '<form action="">\n' +
                 '    <input type="checkbox" name="checkbox" ' + isChecked +'/>\n' +
@@ -1518,7 +1518,7 @@ attach_money
 
                 Swal.fire({
                     icon: "success",
-                    title: "Płatność została dodana",
+                    title: "The payment has been added",
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -1545,7 +1545,7 @@ attach_money
 
                 Swal.fire({
                     icon: "success",
-                    title: "Płatność została usunięta",
+                    title: "The payment has been removed.",
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -1854,7 +1854,7 @@ attach_money
                     }
                 },
                 title: {
-                    text: 'Planowo',
+                    text: 'Planned',
                     align: 'left',
                     style: {
                         color: '#FFF'
@@ -1916,7 +1916,7 @@ attach_money
         },
 
         title: {
-            text: 'Postęp spłaty kredytów',
+            text: 'Progress of Credit repayments',
             align: 'left',
             style: {
                 color: '#FFF'
@@ -2007,7 +2007,7 @@ attach_money
                 }
             },
             title: {
-                text: 'Wydane pieniądze',
+                text: 'Money spent',
                 align: 'left',
                 style: {
                     color: '#FFF'

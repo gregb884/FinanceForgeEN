@@ -92,7 +92,7 @@ class BudgetServiceTest {
         budgetDto.setCurrency(Currency.valueOf("EUR"));
 
         Budget expectedBudget = new Budget();
-        expectedBudget.setName("luty 2024");
+        expectedBudget.setName("February 2024");
         expectedBudget.setCurrency(Currency.valueOf("EUR"));
 
         when(budgetRepository.save(any(Budget.class))).thenReturn(expectedBudget);
@@ -101,7 +101,7 @@ class BudgetServiceTest {
         Budget result = budgetService.saveBudget(user, budgetDto);
 
         // Then
-        assertThat(result.getName()).isEqualTo("luty 2024");
+        assertThat(result.getName()).isEqualTo("February 2024");
         assertThat(result.getCurrency()).isEqualTo(budgetDto.getCurrency());
         verify(budgetRepository, times(1)).save(any(Budget.class));
     }

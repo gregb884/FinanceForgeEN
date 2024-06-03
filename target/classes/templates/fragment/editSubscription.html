@@ -192,16 +192,16 @@
 
                     <form onsubmit="return validateForm()" th:method="POST" th:object="${subscription}" >
 
-                        <p class="text-white-50 mb-5">Edytuj subskrypcje </p>
+                        <p class="text-white-50 mb-5">Edit Subscription </p>
 
                         <div class="form-outline form-white mb-4">
                             <input type="text" id="name" name="username" th:field="${subscription.name}" class="form-control form-control-lg" />
-                            <label class="form-label" for="name">Nazwa</label>
+                            <label class="form-label" for="name">Name</label>
                         </div>
 
                         <div class="form-outline form-white mb-4">
                             <input type="number" id="total" name="password" th:field="${subscription.total}" class="form-control form-control-lg" />
-                            <label class="form-label" >Suma</label>
+                            <label class="form-label" >Total</label>
                         </div>
 
                         <div class="form-outline form-white mb-4">
@@ -212,10 +212,10 @@
                         </div>
 
                         <div class="form-outline form-white mb-4">
-                            <label for="booleanValue" class="form-label">Subskrypcja już opłacona ? </label>
+                            <label for="booleanValue" class="form-label">Is the subscription already paid for? </label>
                             <select th:field="${subscription.paid}" id="booleanValue">
-                                <option th:value="true">Tak</option>
-                                <option th:value="false" >Jeszcze nie</option>
+                                <option th:value="true">Yes</option>
+                                <option th:value="false" >Not yet</option>
                             </select>
 
                         </div>
@@ -223,11 +223,11 @@
 
 
 
-                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Zapisz</button>
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Save</button>
                     </form>
 
                     <form method="GET"  th:action="@{/budget/{budgetId}(budgetId = ${subscription.getBudget().getId()})}">
-                        <button class="btn btn-outline-light btn-lg px-5 finish" type="submit">Zakończ !</button>
+                        <button class="btn btn-outline-light btn-lg px-5 finish" type="submit">Finish !</button>
                     </form>
 
 

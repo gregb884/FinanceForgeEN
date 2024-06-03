@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="import.html :: header">
 
@@ -33,14 +33,14 @@
 
 
     Swal.fire({
-      title: "Napewno chcesz się wylogować?" ,
+      title: "Are you sure you want to log out?" ,
       showDenyButton: true,
-      confirmButtonText: "Tak",
-      denyButtonText: `Nie`,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
 
-        Swal.fire("Do zobaczenia wkrótce !").then(() => {
+        Swal.fire("See you soon!").then(() => {
 
           window.location.href = '/logout'
         });
@@ -53,8 +53,8 @@
 
   function loadingPopup(element) {
     Swal.fire({
-      title: "Trwa przenoszenie danych",
-      html: '<div class="spinner"></div><p>Proszę czekać...</p>',
+      title: "Transferring data in progress",
+      html: '<div class="spinner"></div><p>Please wait...</p>',
       showConfirmButton: false,
     });
 
@@ -72,7 +72,7 @@
 
 
     if (!startDate || !endDate) {
-      alert("Uzupełnij wszystkie pola");
+      alert("Please fill in all fields.");
 
       return false;
     }
@@ -334,9 +334,9 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center" >
 
-              <h2 class="fw-bold mb-2 ">Chcesz skopiować dane z poprzedniego budżetu ? </h2>
+              <h2 class="fw-bold mb-2 ">Do you want to copy data from the previous budget ? </h2>
 
-              <p class="text-white-50 mb-5"> Wybierz budżet</p>
+              <p class="text-white-50 mb-5"> Select a budget.</p>
 
 
 
@@ -352,7 +352,7 @@
                   <li class="page-item" th:classappend="${budgets.hasPrevious()} ? '' : 'disabled'">
                     <a class="page-link" th:href="@{/panel(page=${budgets.number - 1})}" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Poprzednie</span>
+                      <span class="sr-only">Previous</span>
                     </a>
                   </li>
 
@@ -362,7 +362,7 @@
                   <li class="page-item" th:classappend="${budgets.hasNext()} ? '' : 'disabled'">
                     <a class="page-link" th:href="@{/panel(page=${budgets.number + 1})}" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Następne</span>
+                      <span class="sr-only">Next</span>
                     </a>
                   </li>
                 </ul>
@@ -371,7 +371,7 @@
 
 
               <form th:action="@{/budget/{budgetId} (budgetId = ${budgetId})}" method="GET">
-                <button type="submit" class="btn btn-outline-primary month"><span> Kontynuuj bez przenoszenia danych  </span>  </button>
+                <button type="submit" class="btn btn-outline-primary month"><span> Continue without transferring data.  </span>  </button>
               </form>
 
 

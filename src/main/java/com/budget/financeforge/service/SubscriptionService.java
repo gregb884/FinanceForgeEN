@@ -112,7 +112,7 @@ public class SubscriptionService {
                 .stream().filter(group ->
                         group.getName().equals("Ground Cost")).findFirst().get().getCategories();
 
-        Category category = categories.stream().filter(category1 -> category1.getName().equals("Subskrypcje")).findFirst().get();
+        Category category = categories.stream().filter(category1 -> category1.getName().equals("Subscription")).findFirst().get();
 
         category.setPlanned(category.getPlanned().subtract(subscription1.getTotal()));
 
@@ -125,14 +125,14 @@ public class SubscriptionService {
 
         if(!subscription.isPaid() && subscription1.isPaid()){
 
-            Long transactionId = transactionService.findTransactionIdByNote("Opłacona subskrypcja : "+ subscription.getName(), budget.getId()).getId();
+            Long transactionId = transactionService.findTransactionIdByNote("Subscription paid : "+ subscription.getName(), budget.getId()).getId();
 
             transactionService.delete(transactionId,user);
         }
 
         if(subscription.getTotal().compareTo(subscription1.getTotal()) != 0 && subscription.isPaid() && subscription1.isPaid() ){
 
-            Long transactionId = transactionService.findTransactionIdByNote("Opłacona subskrypcja : "+ subscription.getName(), budget.getId()).getId();
+            Long transactionId = transactionService.findTransactionIdByNote("Subscription paid : "+ subscription.getName(), budget.getId()).getId();
 
             transactionService.delete(transactionId,user);
 
@@ -170,13 +170,13 @@ public class SubscriptionService {
                 .findFirst().map(Group::getCategories)
                 .orElseThrow(() -> new RuntimeException("Group not find"));
 
-        boolean hasSubscriptionCategory = categories.stream().anyMatch(category -> "Subskrypcje".equals(category.getName()));
+        boolean hasSubscriptionCategory = categories.stream().anyMatch(category -> "Subscription".equals(category.getName()));
 
         if(!hasSubscriptionCategory){
 
             Category category = new Category();
 
-            category.setName("Subskrypcje");
+            category.setName("Subscription");
 
             if (!subscription.getCurrency().equals(budget.getCurrency()))
 
@@ -226,14 +226,14 @@ public class SubscriptionService {
 
         Transaction transaction = new Transaction();
 
-        transaction.setNote("Opłacona subskrypcja : "+ subscription.getName());
+        transaction.setNote("Subscription paid : "+ subscription.getName());
         transaction.setTotal(subscription.getTotal());
         transaction.setCurrency(subscription.getCurrency());
         transaction.setBudget(budget);
         transaction.setCategory(budget.getGroups().stream()
                 .filter(group -> "Ground Cost".equals(group.getName()))
                 .findFirst().get().getCategories().stream().
-                filter(category -> "Subskrypcje".equals(category.getName()))
+                filter(category -> "Subscription".equals(category.getName()))
                 .findFirst().get());
 
         transactionService.SaveTransaction(transaction);
@@ -261,7 +261,7 @@ public class SubscriptionService {
         subscription.setPaid(false);
         edit(subscription.getId(), subscription,user);
 
-        Long transactionId = transactionService.findTransactionIdByNote("Opłacona subskrypcja : "+ subscription.getName(), subscription.getBudget().getId()).getId();
+        Long transactionId = transactionService.findTransactionIdByNote("Subscription paid : "+ subscription.getName(), subscription.getBudget().getId()).getId();
 
         transactionService.delete(transactionId,user);
 
@@ -275,7 +275,7 @@ public class SubscriptionService {
                         group.getName().equals("Ground Cost")).findFirst().get().getCategories();
 
 
-        Category category = categories.stream().filter(category1 -> category1.getName().equals("Subskrypcje")).findFirst().get();
+        Category category = categories.stream().filter(category1 -> category1.getName().equals("Subscription")).findFirst().get();
 
         if (!subscription.getCurrency().equals(budget.getCurrency()))
 

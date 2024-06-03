@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <link rel="icon" href="img/logo-head.png" type="image/x-icon">
 
 <head th:replace="import.html :: header"></head>
@@ -37,7 +37,7 @@
 
 
         if (!startDate || !endDate) {
-            alert("Uzupełnij wszystkie pola");
+            alert("Please fill in all fields.");
 
             return false;
         }
@@ -264,28 +264,28 @@
                     <div class="card-body p-5 text-center" >
                         <form onsubmit="return validateForm()" th:action="@{/createNewBudget}" method="post">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Nowy budżet </h2>
-                            <p class="text-white-50 mb-5">Podaj date</p>
+                            <h2 class="fw-bold mb-2 text-uppercase">New Budget </h2>
+                            <p class="text-white-50 mb-5">Enter Date</p>
 
                             <div class="form-outline form-white mb-4">
                                 <input type="date" id="start-date" th:field="${budget.startDate}" class="form-control form-control-lg" />
-                                <label class="form-label" >Początkowa data</label>
+                                <label class="form-label" >Start Date</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
                                 <input type="date" id="end-date" th:field="${budget.endDate}" class="form-control form-control-lg" />
-                                <label class="form-label" >końcowa data</label>
+                                <label class="form-label" >End Date</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
                                 <select th:field="${budget.currency}" id="currency" class="form-select form-select-sm" aria-label="Small select example">
                                     <option th:each="currency : ${T(com.budget.financeforge.enumpaket.Currency).values()}" th:value="${currency}" th:text="${currency}"></option>
                                 </select>
-                                <label class="form-label" >Główna Waluta</label>
+                                <label class="form-label" >Main Currency</label>
 
                             </div>
 
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Dalej </button>
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Next </button>
 
 
                         </form>

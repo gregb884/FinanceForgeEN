@@ -23,17 +23,15 @@ public class UserService {
 
     private final ActivationService activationService;
 
-    private final EmailService emailService;
 
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository repository, SettingsRepository settingsRepository, PasswordEncoder passwordEncoder, ActivationService activationService, EmailService emailService) {
+    public UserService(UserRepository repository, SettingsRepository settingsRepository, PasswordEncoder passwordEncoder, ActivationService activationService) {
         this.repository = repository;
         this.settingsRepository = settingsRepository;
         this.passwordEncoder = passwordEncoder;
         this.activationService = activationService;
-        this.emailService = emailService;
     }
 
     public void saveUser(UserDto user)
@@ -65,11 +63,9 @@ public class UserService {
 
         user1.setSettings(settings);
 
-        user1.setAccountActive(false);
+        user1.setAccountActive(true);
 
         user1.setActivationCode(activationService.generateActivationToken());
-
-        emailService.sendActivationEmail(user1.getUsername(),user1.getActivationCode());
 
         repository.save(user1);
 
@@ -107,7 +103,6 @@ public class UserService {
 
         if (user == null) return false;
 
-        emailService.sendResetPassword(email,user.getActivationCode());
 
         return true;
 

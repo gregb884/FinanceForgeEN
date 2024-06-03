@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <meta charset="UTF-8">
 
 <head>
@@ -535,16 +535,16 @@
 
                         <form th:method="POST" id="form" onsubmit="return validateForm()"  th:object="${transaction}" th:action="@{/budget/{budgetId}/transaction/new (budgetId = ${budget.getId()})}">
 
-                            <p class="text-white-50 mb-5">Wprowadź transakcje </p>
+                            <p class="text-white-50 mb-5">Enter Transaction </p>
 
                             <div class="form-outline form-white mb-4">
                                 <input type="date" id="date" name="username" th:field="${transaction.date}" class="form-control form-control-lg" />
-                                <label class="form-label" >Data transakcji</label>
+                                <label class="form-label" >Date Transaction</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text" id="total" name="password" th:field="${transaction.total}" class="form-control form-control-lg" pattern="^\d+(\.\d{1,2})?$" />
-                                <label class="form-label" for="total">Suma</label>
+                                <label class="form-label" for="total">Total</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
@@ -557,7 +557,7 @@
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text" name="note" id="note" th:field="${transaction.note}" class="form-control form-control-lg" />
-                                <label class="form-label" for="note">Notka</label>
+                                <label class="form-label" for="note">Note</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
@@ -570,11 +570,11 @@
 
 
 
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Zapisz</button>
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Save</button>
                         </form>
 
                         <form method="GET"  th:action="@{/budget/{budgetId}(budgetId = ${budget.getId()})}">
-                            <button class="btn btn-outline-light btn-lg px-5 finish" type="submit">Zakończ !</button>
+                            <button class="btn btn-outline-light btn-lg px-5 finish" type="submit">Finish !</button>
                         </form>
 
 
@@ -596,7 +596,7 @@
     <div class="grid-item">
 
 
-        <div class="groundText" >Ostatnie transakcje</div>
+        <div class="groundText" >Last Transaction</div>
 
 
         <table id="table" class="table table-dark table-hover">
@@ -774,9 +774,9 @@
                 '\n' +
                 '            <ul class="dropdown-menu dropdown-menu-dark" >\n' +
                 '              <li>\n' +
-                '                <a class="dropdown-item " onclick="deleteTransaction(' + transaction.id + ')" >Usuń trasakcje</a>\n' +
+                '                <a class="dropdown-item " onclick="deleteTransaction(' + transaction.id + ')" >Delete Transaction</a>\n' +
                 '              </li>\n' +
-                '              <li><a class="dropdown-item " onclick="redirectToEditPage(' + transaction.id + ')" >Edytuj transakcje</a></li>\n' +
+                '              <li><a class="dropdown-item " onclick="redirectToEditPage(' + transaction.id + ')" >Edit Transaction</a></li>\n' +
                 '            </ul>\n' +
                 '\n' +
                 '          </div>' + '</td>';
@@ -908,17 +908,17 @@
 
 
             Swal.fire({
-                title: "Wymienić walute ? Aktualny kurs EUR/PLN  : " + rate,
+                title: "Change currency? Current exchange rate EUR/PLN  : " + rate,
                 showDenyButton: true,
-                confirmButtonText: "Zapisz",
-                denyButtonText: `Wróć`,
+                confirmButtonText: "Save",
+                denyButtonText: `Back`,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire("Zapisano!", "", "success").then(() => {
+                    Swal.fire("Saved!", "", "success").then(() => {
                         document.getElementById('form').submit();
                     });
                 } else if (result.isDenied) {
-                    Swal.fire("Zmiany nie zapisane", "", "info");
+                    Swal.fire("Change not Saved", "", "info");
                 }
             });
 

@@ -202,7 +202,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <form method="get" th:action="@{/budget/{budgetId} (budgetId = ${credit.getBudget().id})}" class="container-fluid justify-content-start">
-                        <button class="btn btn-outline-success me-2" type="submit"><span class="material-symbols-outlined returnSpan">assignment_return</span> widok Budżetu</button>
+                        <button class="btn btn-outline-success me-2" type="submit"><span class="material-symbols-outlined returnSpan">assignment_return</span> View Budget</button>
                     </form>
                 </ul>
                 <span class="navbar-text">
@@ -232,26 +232,26 @@
                     <div class="card-body p-5 text-center">
                         <form th:method="POST" onsubmit="return validateForm()" th:object="${credit}" th:action="@{/budget/{budgetId}/credit/{creditId} (budgetId = ${credit.getBudget().getId()}, creditId = ${credit.getId()})}">
 
-                            <p class="text-white-50 mb-5">Wprowadz dane kredytu </p>
+                            <p class="text-white-50 mb-5">Enter Credit details </p>
 
 
 
                             <div class="form-outline form-white mb-4">
                                 <input type="text" id="name" th:field="${credit.name}" class="form-control form-control-lg" />
-                                <label class="form-label" for="name">Nazwa</label>
+                                <label class="form-label" for="name">Name</label>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-outline form-white mb-4">
                                         <input type="date" id="startDate" th:field="${credit.startDate}" class="form-control form-control-lg" />
-                                        <label class="form-label" for="startDate">Początkowa data</label>
+                                        <label class="form-label" for="startDate">Start Date</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-outline form-white mb-4">
                                         <input type="date" id="endDate" th:field="${credit.endDate}" class="form-control form-control-lg" />
-                                        <label class="form-label" for="EndDate">Końcowa data</label>
+                                        <label class="form-label" for="EndDate">End Date</label>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-white mb-4">
                                         <input type="number" id="total" th:field="${credit.total}" class="form-control form-control-lg" />
-                                        <label class="form-label" for="total">Suma</label>
+                                        <label class="form-label" for="total">Total</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -268,7 +268,7 @@
                                         <select th:field="${credit.currency}" id="currency" class="form-select form-select-sm" aria-label="Small select example">
                                             <option th:each="currency : ${T(com.budget.financeforge.enumpaket.Currency).values()}" th:value="${currency}" th:text="${currency}"></option>
                                         </select>
-                                        <label class="form-label" for="total">Waluta</label>
+                                        <label class="form-label" for="total">Currency</label>
                                     </div>
                                 </div>
                             </div>
@@ -277,38 +277,38 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-white mb-4">
                                         <input type="number" id="repaid" th:field="${credit.repaid}" class="form-control form-control-lg" />
-                                        <label class="form-label" for="repaid">Spłacono</label>
+                                        <label class="form-label" for="repaid">Repaid</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-outline form-white mb-4">
                                         <input type="number" id="totalparts" th:field="${credit.totalParts}" class="form-control form-control-lg" />
-                                        <label class="form-label" for="totalparts">Ilość rat</label>
+                                        <label class="form-label" for="totalparts">Total Parts</label>
                                     </div>
                             </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-outline form-white mb-4">
                                             <input type="number" id="actualpart" th:field="${credit.actualPart}" class="form-control form-control-lg" />
-                                            <label class="form-label" for="actualpart">Aktualna rata</label>
+                                            <label class="form-label" for="actualpart">Actual Part</label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-outline form-white mb-4">
                                             <input type="number" id="monthly" th:field="${credit.payment}" class="form-control form-control-lg" />
-                                            <label class="form-label" for="monthly">Płatność miesięczna</label>
+                                            <label class="form-label" for="monthly">Monthly Payment</label>
                                         </div>
                                     </div>
                                 </div>
 
 
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Zapisz</button>
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Save</button>
                             </div>
                         </form>
 
                         <form method="GET" th:action="@{/budget/{budgetId}/credit(budgetId = ${credit.getBudget().getId()})}">
-                            <button class="btn btn-outline-light btn-lg px-5 finish" type="submit">Zakończ !</button>
+                            <button class="btn btn-outline-light btn-lg px-5 finish" type="submit">Finish !</button>
                         </form>
                     </div>
                 </div>

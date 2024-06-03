@@ -83,12 +83,12 @@ public class LoginController {
 
        if(confirm)
        {
-           modelMap.put("message", "Konto Aktywowane");
+           modelMap.put("message", "Account Activated");
 
            return "login";
        }
 
-       modelMap.put("errorMessage", "Błąd Aktywacji");
+       modelMap.put("errorMessage", "Error Activating Account");
 
         return "login";
     }
@@ -103,13 +103,13 @@ public class LoginController {
         if(confirm)
         {
 
-            modelMap.put("message", "Wysłano link do zmiany hasła na adres email");
+            modelMap.put("message", "Password reset link sent to email address");
 
             return "login";
         }
 
 
-        modelMap.put("errorMessage", "Nie znaleziono konta, Utwórz konto");
+        modelMap.put("errorMessage", "Account not found, create an account");
 
         return "register";
     }
@@ -146,13 +146,13 @@ public class LoginController {
         {
             if(userService.changePassword(activationCode,userDto.getPassword())){
 
-                modelMap.put("message", "Hasło zostało zmienone ,teraz możesz się zalogować");
+                modelMap.put("message", "The password has been changed, now you can log in");
 
                 return "login";
 
             }
 
-                modelMap.put("errorMessage", "Nie znaleziono użytkownika , zarejestruj się ");
+                modelMap.put("errorMessage", "User not found, please register ");
 
                 return "register";
 
@@ -160,7 +160,7 @@ public class LoginController {
 
 
 
-        modelMap.put("errorMessage", "Podane hasła różnią się !");
+        modelMap.put("errorMessage", "The provided passwords do not match !");
 
         return "changePassword";
 
